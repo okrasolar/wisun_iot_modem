@@ -1,0 +1,17 @@
+Release/wisun_iot_modem*
+Release/syscfg
+.vscode
+*.code-workspace
+*~
+.env
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+.settings*
+.ccsproject
+.cproject
+.project
+*.d_raw
+*.o
+.DS_Store
