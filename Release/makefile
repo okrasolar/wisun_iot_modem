@@ -698,7 +698,7 @@ clean:
 post-build:
 	-$(CG_TOOL_ROOT)/bin/tiarmobjcopy wisun_iot_modem.out --output-target ihex wisun_iot_modem.hex
 	-$(CG_TOOL_ROOT)/bin/tiarmobjcopy wisun_iot_modem.out --output-target binary wisun_iot_modem-noheader.bin
-	-$(CG_DRIVER_LIB)/tools/common/mcuboot/imgtool sign --header-size 0x80 --align 4 --slot-size 0xAC000 --version 1.0.0 --pad-header --key ${CG_DRIVER_LIB}/source/third_party/mcuboot/root-ec-p256.pem wisun_iot_modem-noheader.bin wisun_iot_modem.bin
+	-$(CG_DRIVER_LIB)/tools/common/mcuboot/imgtool sign --header-size 0x80 --align 4 --slot-size 0xA8000 --version 1.0.0 --pad-header --key ${CG_DRIVER_LIB}/source/third_party/mcuboot/root-ec-p256.pem wisun_iot_modem-noheader.bin wisun_iot_modem.bin
 	-@echo ' '
 
 .PHONY: all clean dependents
