@@ -303,6 +303,8 @@ ORDERED_OBJS += \
 "./mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timeout.o" \
 "./mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timer.o" \
 "./mbed/nanostack/sal-stack-nanostack-eventloop/source/system_timer.o" \
+"./mbed/ti-nv-driver/crc.o" \
+"./mbed/ti-nv-driver/nvocmp.o" \
 "./mbed/ti-rf-driver/source/RFQueue.o" \
 "./software_stack/ti15_4mac/macTask.o" \
 "./software_stack/ti15_4mac/mac_settings/mac_cfg.o" \

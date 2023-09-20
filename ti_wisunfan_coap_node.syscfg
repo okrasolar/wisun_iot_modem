@@ -59,6 +59,11 @@ NVS1.externalFlash.$name            = "ti_drivers_nvs_NVSSPI25X0";
 NVS1.externalFlash.regionSize       = 0x100000;
 NVS1.externalFlash.verifyBufferSize = 64;
 
+NVS1.$name                    = "CONFIG_NVSINTERNAL";
+NVS1.internalFlash.$name      = "ti_drivers_nvs_NVSCC26XX0";
+NVS1.internalFlash.regionBase = 0xA8000;
+NVS1.internalFlash.regionSize = 0x4000;
+
 RF.$hardware = system.deviceData.board.components["SKY13317-373LF"];
 
 TRNG1.$name = "NANOSTACK_TRNG";
