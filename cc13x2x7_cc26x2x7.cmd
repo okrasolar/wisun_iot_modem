@@ -89,6 +89,9 @@
 #define RAM_BASE 0x20000000
 #define RAM_SIZE 0x24000
 
+#define NVS_BASE 0xA8000
+#define NVS_SIZE 0x4000
+
 /******************************************************************************
  System memory map
  *****************************************************************************/
@@ -98,6 +101,9 @@ MEMORY
     FLASH (RX) : origin = FLASH_BASE, length = FLASH_SIZE
 
     ENTRY (RX) : origin = ENTRY_START, length = ENTRY_SIZE
+
+    /* NVS area (unused in linker file, reserved for shared NV) */
+    NVS (RX) : origin = NVS_BASE, length = NVS_SIZE
 
     /* Application uses internal RAM for data */
     SRAM (RWX) : origin = RAM_BASE, length = RAM_SIZE
