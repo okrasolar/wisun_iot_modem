@@ -728,6 +728,20 @@ static cat_return_state csq_run(const struct cat_command* cmd)
     return CAT_RETURN_STATE_DATA_OK;
 }
 
+extern void ccfg_read_mac_addr(uint8_t* mac_addr);
+static cat_return_state cipstamac_run(const struct cat_command* cmd)
+{
+    uint8_t hwAddr[8];
+    ccfg_read_mac_addr(hwAddr);
+    char mac_str[24];
+    snprintf(mac_str, 24, "%02x:%02x:%02x:%02x:%02x:%02x:%02x:%02x",
+        hwAddr[0], hwAddr[1], hwAddr[2], hwAddr[3], hwAddr[4], hwAddr[5], hwAddr[6], hwAddr[7]);
+    write_string("+CIPSTAMAC:\"");
+    write_string(mac_str);
+    write_string("\"\r\n");
+    return CAT_RETURN_STATE_DATA_OK;
+}
+
 /******************************************************************************
  AT command parser commands
  *****************************************************************************/
@@ -749,6 +763,9 @@ static struct cat_command cmds[] = {
     { .name = "+CSQ",
         .description = "Get RSL value",
         .run = csq_run },
+    { .name = "+CIPSTAMAC",
+        .description = "Get MAC address",
+        .run = cipstamac_run },
     { .name = "+CIPSTART",
         .description = "Connect TCP",
         .write = cipstart_write,
