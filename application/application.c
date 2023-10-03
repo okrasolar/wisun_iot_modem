@@ -117,13 +117,13 @@ typedef enum connection_status {
 static connection_status_t _connect_status;
 static volatile bool uartCharReceived = false;
 static volatile bool connectedFlg = false;
+static volatile uint8_t newConnectedFlg = 2;
 static volatile bool ipConnectedFlg = false;
 static volatile bool tcpConnectProblem = false;
 static volatile bool txPendingFlg = false;
 static char uartChar;
 static uint16_t ipd_data_length = 0;
 static int8_t interface_id = NOT_INITIALIZED;
-static bool _blocking = false;
 static bool _configured = false;
 static bool _isTcp;
 static ns_address_t peer_addr = { 0 };
@@ -176,6 +176,7 @@ int8_t service_id = -1;
 /* Linker file created symbol for addressing MCUBoot header */
 extern uint8_t __PRIMARY_SLOT_BASE;
 
+static uint32_t connect_led_flash_period_ms;
 /******************************************************************************
  AT command parser globals
  *****************************************************************************/
@@ -254,14 +255,17 @@ void nanostackNetworkHandler(mesh_connection_status_t status)
 {
     tr_debug("nanostackNetworkHandler: %x", status);
 
-    if (_blocking) {
-        if (_connect_status == CON_STATUS_CONNECTING
-            && (status == MESH_CONNECTED || status == MESH_CONNECTED_LOCAL
-                || status == MESH_CONNECTED_GLOBAL)) {
-            connectedFlg = true;
-        } else if (status == MESH_DISCONNECTED) {
-            connectedFlg = false;
+    if (!connectedFlg
+        && (status == MESH_CONNECTED || status == MESH_CONNECTED_LOCAL || status == MESH_CONNECTED_GLOBAL)) {
+        connectedFlg = true;
+        if (newConnectedFlg == 2) {
+            newConnectedFlg = 1;
         }
+        GPIO_write(CONFIG_GPIO_GLED, CONFIG_GPIO_LED_ON);
+        GPIO_write(CONFIG_GPIO_RLED, CONFIG_GPIO_LED_OFF);
+    } else if (connectedFlg && (status == MESH_DISCONNECTED)) {
+        connectedFlg = false;
+        GPIO_write(CONFIG_GPIO_GLED, CONFIG_GPIO_LED_OFF);
     }
 
     if (status == MESH_CONNECTED) {
@@ -500,6 +504,9 @@ static cat_return_state cgmr_run(const struct cat_command* cmd)
 
 static cat_return_state cipstart_write(const struct cat_command* cmd, const uint8_t* data, const size_t data_size, const size_t args_num)
 {
+    if (connectedFlg == false)
+        return CAT_RETURN_STATE_ERROR;
+
     if (ipConnectedFlg) {
         write_string("ALREADY CONNECTED\r\n");
         tr_error("Already connected");
@@ -605,6 +612,9 @@ static cat_return_state cipclose_run(const struct cat_command* cmd)
 static struct cat_command cipsend_cmd;
 static cat_return_state cipsend_write(const struct cat_command* cmd, const uint8_t* data, const size_t data_size, const size_t args_num)
 {
+    if (connectedFlg == false)
+        return CAT_RETURN_STATE_ERROR;
+
     // Make sure this command is not executed at the same time as an unsolicited command
     if (at.unsolicited_fsm.state != CAT_UNSOLICITED_STATE_IDLE) {
         return CAT_RETURN_STATE_DATA_NEXT;
@@ -836,8 +846,7 @@ extern void timacExtaddressRegister();
 #endif
 
 mesh_error_t nanostack_wisunInterface_bringup();
-mesh_error_t nanostack_wisunInterface_connect(bool blocking);
-void nanostack_wait_till_connect();
+mesh_error_t nanostack_wisunInterface_connect();
 
 /******************************************************************************
 Function definitions
@@ -958,12 +967,10 @@ mesh_error_t nanostack_wisunInterface_bringup()
  * Only blocking mode has been tested. So, it is recommended for
  * the input parameter blocking to be set to true.
  */
-mesh_error_t nanostack_wisunInterface_connect(bool blocking)
+mesh_error_t nanostack_wisunInterface_connect()
 {
 
     int8_t tasklet_id;
-
-    _blocking = blocking;
 
     tasklet_id = wisun_tasklet_connect(nanostackNetworkHandler, interface_id);
 
@@ -972,30 +979,6 @@ mesh_error_t nanostack_wisunInterface_connect(bool blocking)
     }
 
     return MESH_ERROR_NONE;
-}
-
-/*!
- * Connect to the Wi-SUN network. Should be called only after calling
- * nanostack_wisunInterface_bringup().
- * It is recommended to start the node join process in blocking mode
- */
-void nanostack_wait_till_connect()
-{
-    uint8_t _net_state;
-    if (_blocking) {
-
-        // wait till connection goes through
-        while (connectedFlg == false) {
-            /* Toggle red LED at rate of state*100 ms. Slower the blinking, closer it is to joining */
-            _net_state = get_current_net_state();
-            usleep((_net_state + 1) * 100000);
-            // max usleep value possible is 1000000
-            GPIO_toggle(CONFIG_GPIO_RLED);
-        }
-        /* Solid Green to Indicate that node has Joined */
-        GPIO_write(CONFIG_GPIO_RLED, CONFIG_GPIO_LED_OFF);
-        GPIO_write(CONFIG_GPIO_GLED, CONFIG_GPIO_LED_ON);
-    }
 }
 
 /*
@@ -1036,7 +1019,7 @@ void* mainThread(void* arg0)
             ;
     }
 
-    if (MESH_ERROR_NONE != nanostack_wisunInterface_connect(true)) {
+    if (MESH_ERROR_NONE != nanostack_wisunInterface_connect()) {
         // release mutex
         nanostack_unlock();
         // do not proceed further
@@ -1048,29 +1031,45 @@ void* mainThread(void* arg0)
     // Release mutex before blocking
     nanostack_unlock();
 
-    nanostack_wait_till_connect();
-
-#ifdef COAP_SERVICE_ENABLE
-    // Setup Coap over-the-air download
-    service_id = coap_service_initialize(interface_id, COAP_PORT, 0, NULL, NULL);
-    oad_tasklet_start();
-
-    /* Initialize CoAP OAD services */
-    coap_service_register_uri(service_id, OAD_FWV_REQ_URI,
-        COAP_SERVICE_ACCESS_GET_ALLOWED | COAP_SERVICE_ACCESS_PUT_ALLOWED | COAP_SERVICE_ACCESS_POST_ALLOWED,
-        coap_oad_cb);
-    coap_service_register_uri(service_id, OAD_NOTIF_URI,
-        COAP_SERVICE_ACCESS_GET_ALLOWED | COAP_SERVICE_ACCESS_PUT_ALLOWED | COAP_SERVICE_ACCESS_POST_ALLOWED,
-        coap_oad_cb);
-#endif
-
-    write_string("ready\r\n\r\n");
+    connect_led_flash_period_ms = ClockP_getSystemTicks();
 
     // Main loop
     while (1) {
+        if (connectedFlg == false) {
+            if (((uint32_t)ClockP_getSystemTicks() - connect_led_flash_period_ms) > ((get_current_net_state() + 1) * 10000)) {
+                connect_led_flash_period_ms = ClockP_getSystemTicks();
+                GPIO_toggle(CONFIG_GPIO_RLED);
+            }
+        }
+
+        if (newConnectedFlg == 1) {
+            newConnectedFlg = 0;
+#ifdef COAP_SERVICE_ENABLE
+            // Setup Coap over-the-air download
+            service_id = coap_service_initialize(interface_id, COAP_PORT, 0, NULL, NULL);
+            oad_tasklet_start();
+
+            /* Initialize CoAP OAD services */
+            coap_service_register_uri(service_id, OAD_FWV_REQ_URI,
+                COAP_SERVICE_ACCESS_GET_ALLOWED | COAP_SERVICE_ACCESS_PUT_ALLOWED | COAP_SERVICE_ACCESS_POST_ALLOWED,
+                coap_oad_cb);
+            coap_service_register_uri(service_id, OAD_NOTIF_URI,
+                COAP_SERVICE_ACCESS_GET_ALLOWED | COAP_SERVICE_ACCESS_PUT_ALLOWED | COAP_SERVICE_ACCESS_POST_ALLOWED,
+                coap_oad_cb);
+#endif
+            write_string("ready\r\n\r\n");
+        }
+
         // Perform AT command parsing
         if (cat_service(&at) == CAT_STATUS_OK) {
-            sem_wait(&sem);
+            if (newConnectedFlg == 0) {
+                sem_wait(&sem);
+            } else {
+                struct timespec ts;
+                clock_gettime(CLOCK_REALTIME, &ts);
+                ts.tv_nsec += 40000000;
+                sem_timedwait(&sem, &ts);
+            }
         }
     }
 
