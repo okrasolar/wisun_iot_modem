@@ -3,10 +3,10 @@
 ################################################################################
 
 # Each subdirectory must supply rules for building sources it contributes
-build-1374362639: ../ti_wisunfan_coap_node.syscfg
+build-1374362639: ../wisun_iot_modem.syscfg
 	@echo 'Building file: "$<"'
 	@echo 'Invoking: SysConfig'
-	"$(CG_SYSCONFIG_FOLDER)/sysconfig_cli.sh" -s "$(CG_DRIVER_LIB)/.metadata/product.json" --script "../ti_wisunfan_coap_node.syscfg" -o "syscfg" --compiler ticlang
+	"$(CG_SYSCONFIG_FOLDER)/sysconfig_cli.sh" -s "$(CG_DRIVER_LIB)/.metadata/product.json" --script "../wisun_iot_modem.syscfg" -o "syscfg" --compiler ticlang
 	@echo 'Finished building: "$<"'
 	@echo ' '
 

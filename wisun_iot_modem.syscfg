@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --board "/ti/boards/LP_CC1352P7_1" --rtos "tirtos7" --product "simplelink_cc13xx_cc26xx_sdk@7.10.00.98"
- * @versions {"tool":"1.15.0+2826"}
+ * @cliArgs --device "CC1352P7RGZ" --package "RGZ" --part "Default" --rtos "tirtos7" --product "simplelink_cc13xx_cc26xx_sdk@7.10.01.24"
+ * @versions {"tool":"1.16.2+3028"}
  */
 
 /**
@@ -60,56 +60,64 @@ NVS1.internalFlash.regionSize = 0x4000;
 
 NVS2.$name                          = "CONFIG_NVSEXTERNAL";
 NVS2.nvsType                        = "External";
-NVS2.$hardware                      = system.deviceData.board.components.MX25R8035F;
 NVS2.externalFlash.$name            = "ti_drivers_nvs_NVSSPI25X0";
 NVS2.externalFlash.regionSize       = 0x100000;
 NVS2.externalFlash.verifyBufferSize = 64;
 
-RF.$hardware = system.deviceData.board.components["SKY13317-373LF"];
+RF.rfAntennaPinSymbol0   = "CONFIG_RF_24GHZ";
+RF.rfAntennaPinSymbol1   = "CONFIG_RF_HIGH_PA";
+RF.rfAntennaPinSymbol2   = "CONFIG_RF_SUB1GHZ";
+RF.pinSelectionAntenna   = 3;
+RF.rfAntennaPin0.$assign = "DIO_28";
+RF.rfAntennaPin1.$assign = "DIO_30";
+RF.rfAntennaPin2.$assign = "DIO_29";
 
 TRNG1.$name = "NANOSTACK_TRNG";
 
 TRNG2.$name = "CONFIG_TRNG_0";
 
-UART21.$name            = "CONFIG_UART2_0";
-UART21.$hardware        = system.deviceData.board.components.XDS110UART;
-UART21.rxRingBufferSize = 128;
-UART21.txRingBufferSize = 128;
+UART21.$name              = "CONFIG_UART2_0";
+UART21.rxRingBufferSize   = 128;
+UART21.txRingBufferSize   = 128;
+UART21.uart.$assign       = "UART1";
+UART21.uart.txPin.$assign = "DIO_13";
+UART21.uart.rxPin.$assign = "DIO_12";
 
-UART22.$name            = "CONFIG_UART2_1";
-UART22.rxRingBufferSize = 2440;
-UART22.txRingBufferSize = 2440;
+UART22.$name              = "CONFIG_UART2_1";
+UART22.rxRingBufferSize   = 2440;
+UART22.txRingBufferSize   = 2440;
+UART22.uart.$assign       = "UART0";
+UART22.uart.txPin.$assign = "DIO_16";
+UART22.uart.rxPin.$assign = "DIO_17";
 
-Watchdog1.$name = "CONFIG_WATCHDOG_0";
+Watchdog1.$name            = "CONFIG_WATCHDOG_0";
+Watchdog1.watchdog.$assign = "WDT0";
 
-Button1.$hardware     = system.deviceData.board.components["BTN-1"];
-Button1.$name         = "CONFIG_BTN_LEFT";
-Button1.gpioPin.$name = "CONFIG_GPIO_BTN1";
-Button1.gpioPin.pull  = "Pull Up";
+LED1.$name          = "CONFIG_LED_RED";
+LED1.ledPin.$assign = "DIO_6";
+LED1.gpioPin.$name  = "CONFIG_GPIO_RLED";
 
-Button2.$hardware     = system.deviceData.board.components["BTN-2"];
-Button2.$name         = "CONFIG_BTN_RIGHT";
-Button2.gpioPin.$name = "CONFIG_GPIO_BTN2";
-Button2.gpioPin.pull  = "Pull Up";
-
-LED1.$hardware     = system.deviceData.board.components.LED_RED;
-LED1.$name         = "CONFIG_LED_RED";
-LED1.gpioPin.$name = "CONFIG_GPIO_RLED";
-
-LED2.$hardware     = system.deviceData.board.components.LED_GREEN;
-LED2.$name         = "CONFIG_LED_GREEN";
-LED2.gpioPin.$name = "CONFIG_GPIO_GLED";
+LED2.$name          = "CONFIG_LED_GREEN";
+LED2.ledPin.$assign = "DIO_7";
+LED2.gpioPin.$name  = "CONFIG_GPIO_GLED";
 
 const NVSSPI25XDevice                        = scripting.addModule("/ti/drivers/nvs/NVSSPI25XDevice", {}, false);
 const NVSSPI25XDevice1                       = NVSSPI25XDevice.addInstance({}, false);
 NVSSPI25XDevice1.$name                       = "CONFIG_NVS_SPI_0";
 NVS2.externalFlash.spiFlashDevice            = NVSSPI25XDevice1;
+NVSSPI25XDevice1.chipSelect.$assign          = "DIO_20";
 NVSSPI25XDevice1.chipSelectPinInstance.$name = "CONFIG_GPIO_SPI_FLASH_CS";
 
 const SPI                          = scripting.addModule("/ti/drivers/SPI", {}, false);
 const SPI1                         = SPI.addInstance({}, false);
 NVSSPI25XDevice1.sharedSpiInstance = SPI1;
 SPI1.$name                         = "Board_SPI_0";
+SPI1.spi.$assign                   = "SSI0";
+SPI1.spi.sclkPin.$assign           = "DIO_10";
+SPI1.spi.pociPin.$assign           = "DIO_8";
+SPI1.spi.picoPin.$assign           = "DIO_9";
+SPI1.spi.dmaRxChannel.$assign      = "DMA_CH3";
+SPI1.spi.dmaTxChannel.$assign      = "DMA_CH4";
 
 BIOS.assertsEnabled = false;
 BIOS.rtsGateType    = "BIOS_GateMutexPri";
@@ -164,31 +172,3 @@ ti_wisunfan.aesccmModule.$name                 = "CONFIG_AESCCM_0";
 ti_wisunfan.aesecbModule.$name                 = "CONFIG_AESECB_0";
 ti_wisunfan.aescbcModule.$name                 = "CONFIG_AESCBC_0";
 ti_wisunfan.ti_wisunfanOpts.$name              = "ti_ti_wisunfan_ti_wisunfan_config_opts0";
-
-/**
- * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
- * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
- * re-solve from scratch.
- */
-RF.rfAntennaPin0.$suggestSolution   = "ball.41";
-RF.rfAntennaPin1.$suggestSolution   = "ball.42";
-RF.rfAntennaPin2.$suggestSolution   = "ball.43";
-UART21.uart.$suggestSolution        = "UART0";
-UART21.uart.txPin.$suggestSolution  = "boosterpack.4";
-UART21.uart.rxPin.$suggestSolution  = "boosterpack.3";
-UART22.uart.$suggestSolution        = "UART1";
-UART22.uart.txPin.$suggestSolution  = "boosterpack.31";
-UART22.uart.rxPin.$suggestSolution  = "boosterpack.32";
-Watchdog1.watchdog.$suggestSolution = "WDT0";
-Button1.button.$suggestSolution     = "boosterpack.13";
-Button2.button.$suggestSolution     = "boosterpack.8";
-LED1.ledPin.$suggestSolution        = "boosterpack.39";
-LED2.ledPin.$suggestSolution        = "boosterpack.40";
-NVSSPI25XDevice1.chipSelect.$suggestSolution = "boosterpack.38";
-SPI1.spi.$suggestSolution                    = "SSI0";
-SPI1.spi.sclkPin.$suggestSolution            = "boosterpack.7";
-SPI1.spi.pociPin.$suggestSolution            = "boosterpack.14";
-SPI1.spi.picoPin.$suggestSolution            = "boosterpack.15";
-SPI1.spi.dmaRxChannel.$suggestSolution       = "DMA_CH3";
-SPI1.spi.dmaTxChannel.$suggestSolution       = "DMA_CH4";
-Timer.rtc.$suggestSolution          = "RTC0";

@@ -7,7 +7,7 @@ CMD_SRCS += \
 ../cc13x2x7_cc26x2x7.cmd
 
 SYSCFG_SRCS += \
-../ti_wisunfan_coap_node.syscfg
+../wisun_iot_modem.syscfg
 
 C_SRCS += \
 ./syscfg/ti_radio_config.c \
@@ -71,7 +71,7 @@ GEN_FILES__QUOTED += \
 "syscfg/ti_sysbios_config.c"
 
 SYSCFG_SRCS__QUOTED += \
-"../ti_wisunfan_coap_node.syscfg"
+"../wisun_iot_modem.syscfg"
 
 C_SRCS__QUOTED += \
 "./syscfg/ti_radio_config.c" \
