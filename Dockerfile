@@ -1,8 +1,8 @@
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 # Install dependencies
 RUN apt-get update && apt-get -y install make wget python3 python3-pip python3-venv python3-dev \
-    libc6-i386 libusb-0.1-4 libgconf-2-4 libncurses5 libpython2.7 libtinfo5
+    libc6-i386 libusb-0.1-4 libgconf-2-4 libncurses5 libpython2.7 libtinfo5 clang-format
 
 # Get the build tools
 RUN wget https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-ayxs93eZNN/3.2.0.LTS/ti_cgt_armllvm_3.2.0.LTS_linux-x64_installer.bin && \
@@ -16,10 +16,6 @@ RUN wget --no-verbose --show-progress --progress=dot:mega https://dr-download.ti
     ./simplelink_cc13xx_cc26xx_sdk_7_10_00_98.run --mode unattended --prefix . && \
     rm simplelink_cc13xx_cc26xx_sdk_7_10_00_98.run && \
     rm -r xdctools_3_62_01_15_core
-
-RUN pip3 install cmake==3.16.6 scikit-build
-
-RUN pip3 install clang-format==16.0.3
 
 # Update path
 ENV PATH="/ti-cgt-armllvm_3.2.0.LTS/bin:${PATH}"
