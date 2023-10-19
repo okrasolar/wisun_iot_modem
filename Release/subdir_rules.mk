@@ -2,26 +2,18 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-# Each subdirectory must supply rules for building sources it contributes
-build-1374362639: ../wisun_iot_modem.syscfg
-	@echo 'Building file: "$<"'
-	@echo 'Invoking: SysConfig'
-	"$(CG_SYSCONFIG_FOLDER)/sysconfig_cli.sh" -s "$(CG_DRIVER_LIB)/.metadata/product.json" --script "../wisun_iot_modem.syscfg" -o "syscfg" --compiler ticlang
-	@echo 'Finished building: "$<"'
-	@echo ' '
-
-syscfg/ti_radio_config.c: build-1374362639
-syscfg/ti_radio_config.h: build-1374362639
-syscfg/ti_drivers_config.c: build-1374362639
-syscfg/ti_drivers_config.h: build-1374362639
-syscfg/ti_wisunfan_config.h: build-1374362639
-syscfg/ti_wisunfan_features.h: build-1374362639
-syscfg/ti_wisunfan_config.opts: build-1374362639
-syscfg/ti_utils_build_linker.cmd.genlibs: build-1374362639
-syscfg/syscfg_c.rov.xs: build-1374362639
-syscfg/ti_sysbios_config.h: build-1374362639
-syscfg/ti_sysbios_config.c: build-1374362639
-syscfg/: build-1374362639
+syscfg/ti_radio_config.c: sysconfig-call
+syscfg/ti_radio_config.h: sysconfig-call
+syscfg/ti_drivers_config.c: sysconfig-call
+syscfg/ti_drivers_config.h: sysconfig-call
+syscfg/ti_wisunfan_config.h: sysconfig-call
+syscfg/ti_wisunfan_features.h: sysconfig-call
+syscfg/ti_wisunfan_config.opts: sysconfig-call
+syscfg/ti_utils_build_linker.cmd.genlibs: sysconfig-call
+syscfg/syscfg_c.rov.xs: sysconfig-call
+syscfg/ti_sysbios_config.h: sysconfig-call
+syscfg/ti_sysbios_config.c: sysconfig-call
+syscfg/: sysconfig-call
 
 syscfg/%.o: ./syscfg/%.c $(GEN_OPTS) | $(GEN_FILES) $(GEN_MISC_FILES)
 	@echo 'Building file: "$<"'

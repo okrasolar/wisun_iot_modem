@@ -343,10 +343,17 @@ $(GEN_CMDS__FLAG) \
 -Wl,-l"$(CG_DRIVER_LIB)/source/ti/devices/cc13x2x7_cc26x2x7/driverlib/bin/ticlang/driverlib.lib" \
 -Wl,-llibc.a \
 
--include ../makefile.init
-
 RM := rm -rf
 RMDIR := rm -rf
+
+# All Target
+all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
+	@$(MAKE) --no-print-directory -Onone "wisun_iot_modem.out"
+
+# Print custom error message is sysconfig was not executed
+sysconfig-call:
+	@echo "Call 'make sysconfig-*' first!"
+	@exit 2
 
 # All of the sources participating in the build are defined here
 -include sources.mk
@@ -635,10 +642,13 @@ wisun_iot_modem.out \
 EXE_OUTPUTS__QUOTED += \
 "wisun_iot_modem.out" \
 
-
-# All Target
-all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "wisun_iot_modem.out"
+# Sysconfig targets
+sysconfig-eu: ../wisun_eu.syscfg
+	@echo 'Building file XXX: "$<"'
+	@echo 'Invoking: SysConfig'
+	"$(CG_SYSCONFIG_FOLDER)/sysconfig_cli.sh" -s "$(CG_DRIVER_LIB)/.metadata/product.json" --script $< -o "syscfg" --compiler ticlang
+	@echo 'Finished building: "$<"'
+	@echo ' '
 
 # Tool invocations
 wisun_iot_modem.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
