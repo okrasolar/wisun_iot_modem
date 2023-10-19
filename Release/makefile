@@ -643,7 +643,7 @@ EXE_OUTPUTS__QUOTED += \
 "wisun_iot_modem.out" \
 
 # Sysconfig targets
-sysconfig-eu: ../wisun_eu.syscfg
+sysconfig-%: ../wisun_%.syscfg
 	@echo 'Building file XXX: "$<"'
 	@echo 'Invoking: SysConfig'
 	"$(CG_SYSCONFIG_FOLDER)/sysconfig_cli.sh" -s "$(CG_DRIVER_LIB)/.metadata/product.json" --script $< -o "syscfg" --compiler ticlang
