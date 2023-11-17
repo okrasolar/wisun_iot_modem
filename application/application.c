@@ -567,7 +567,8 @@ static cat_return_state cipstart_write(const struct cat_command* cmd, const uint
         goto error;
     }
 
-    for (int i = 0; i < 2000; i++) {
+    // Connect timeout is 3 min 3s according to tcp.h
+    for (int i = 0; i < 190000; i++) {
         if (ipConnectedFlg || tcpConnectProblem) {
             break;
         }
