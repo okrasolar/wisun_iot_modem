@@ -1,0 +1,174 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "CC1352P7RGZ" --package "RGZ" --part "Default" --rtos "tirtos7" --product "simplelink_cc13xx_cc26xx_sdk@7.10.01.24"
+ * @versions {"tool":"1.16.2+3028"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const CCFG         = scripting.addModule("/ti/devices/CCFG");
+const rfdesign     = scripting.addModule("/ti/devices/radioconfig/rfdesign");
+const NVS          = scripting.addModule("/ti/drivers/NVS");
+const NVS1         = NVS.addInstance();
+const NVS2         = NVS.addInstance();
+const RF           = scripting.addModule("/ti/drivers/RF");
+const TRNG         = scripting.addModule("/ti/drivers/TRNG", {}, false);
+const TRNG1        = TRNG.addInstance();
+const TRNG2        = TRNG.addInstance();
+const UART2        = scripting.addModule("/ti/drivers/UART2", {}, false);
+const UART21       = UART2.addInstance();
+const UART22       = UART2.addInstance();
+const Watchdog     = scripting.addModule("/ti/drivers/Watchdog", {}, false);
+const Watchdog1    = Watchdog.addInstance();
+const Button       = scripting.addModule("/ti/drivers/apps/Button");
+const Button1      = Button.addInstance();
+const Button2      = Button.addInstance();
+const LED          = scripting.addModule("/ti/drivers/apps/LED");
+const LED1         = LED.addInstance();
+const LED2         = LED.addInstance();
+const Settings     = scripting.addModule("/ti/posix/tirtos/Settings");
+const BIOS         = scripting.addModule("/ti/sysbios/BIOS");
+const Boot         = scripting.addModule("/ti/sysbios/family/arm/cc26xx/Boot");
+const Hwi          = scripting.addModule("/ti/sysbios/family/arm/m3/Hwi");
+const GateMutexPri = scripting.addModule("/ti/sysbios/gates/GateMutexPri");
+const HeapCallback = scripting.addModule("/ti/sysbios/heaps/HeapCallback");
+const Clock        = scripting.addModule("/ti/sysbios/knl/Clock");
+const Event        = scripting.addModule("/ti/sysbios/knl/Event");
+const Idle         = scripting.addModule("/ti/sysbios/knl/Idle");
+const Idle1        = Idle.addInstance();
+const Mailbox      = scripting.addModule("/ti/sysbios/knl/Mailbox");
+const Semaphore    = scripting.addModule("/ti/sysbios/knl/Semaphore");
+const Swi          = scripting.addModule("/ti/sysbios/knl/Swi");
+const Task         = scripting.addModule("/ti/sysbios/knl/Task");
+const Error        = scripting.addModule("/ti/sysbios/runtime/Error");
+const Memory       = scripting.addModule("/ti/sysbios/runtime/Memory");
+const SysCallback  = scripting.addModule("/ti/sysbios/runtime/SysCallback");
+const System       = scripting.addModule("/ti/sysbios/runtime/System");
+const ti_wisunfan  = scripting.addModule("/ti/ti_wisunfan/ti_wisunfan");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+CCFG.enableCodeGeneration = false;
+
+NVS1.$name                    = "CONFIG_NVSINTERNAL";
+NVS1.internalFlash.$name      = "ti_drivers_nvs_NVSCC26XX0";
+NVS1.internalFlash.regionBase = 0xA8000;
+NVS1.internalFlash.regionSize = 0x4000;
+
+NVS2.$name                          = "CONFIG_NVSEXTERNAL";
+NVS2.nvsType                        = "External";
+NVS2.externalFlash.$name            = "ti_drivers_nvs_NVSSPI25X0";
+NVS2.externalFlash.regionSize       = 0x100000;
+NVS2.externalFlash.verifyBufferSize = 64;
+
+RF.rfAntennaPinSymbol0   = "CONFIG_RF_24GHZ";
+RF.rfAntennaPinSymbol1   = "CONFIG_RF_HIGH_PA";
+RF.rfAntennaPinSymbol2   = "CONFIG_RF_SUB1GHZ";
+RF.pinSelectionAntenna   = 3;
+RF.rfAntennaPin0.$assign = "DIO_28";
+RF.rfAntennaPin1.$assign = "DIO_30";
+RF.rfAntennaPin2.$assign = "DIO_29";
+
+TRNG1.$name = "NANOSTACK_TRNG";
+
+TRNG2.$name = "CONFIG_TRNG_0";
+
+UART21.$name              = "CONFIG_UART2_0";
+UART21.rxRingBufferSize   = 128;
+UART21.txRingBufferSize   = 128;
+UART21.uart.$assign       = "UART1";
+UART21.uart.txPin.$assign = "DIO_13";
+UART21.uart.rxPin.$assign = "DIO_12";
+
+UART22.$name              = "CONFIG_UART2_1";
+UART22.rxRingBufferSize   = 2440;
+UART22.txRingBufferSize   = 2440;
+UART22.uart.$assign       = "UART0";
+UART22.uart.txPin.$assign = "DIO_16";
+UART22.uart.rxPin.$assign = "DIO_17";
+
+Watchdog1.$name            = "CONFIG_WATCHDOG_0";
+Watchdog1.watchdog.$assign = "WDT0";
+
+LED1.$name          = "CONFIG_LED_RED";
+LED1.ledPin.$assign = "DIO_6";
+LED1.gpioPin.$name  = "CONFIG_GPIO_RLED";
+
+LED2.$name          = "CONFIG_LED_GREEN";
+LED2.ledPin.$assign = "DIO_7";
+LED2.gpioPin.$name  = "CONFIG_GPIO_GLED";
+
+const NVSSPI25XDevice                        = scripting.addModule("/ti/drivers/nvs/NVSSPI25XDevice", {}, false);
+const NVSSPI25XDevice1                       = NVSSPI25XDevice.addInstance({}, false);
+NVSSPI25XDevice1.$name                       = "CONFIG_NVS_SPI_0";
+NVS2.externalFlash.spiFlashDevice            = NVSSPI25XDevice1;
+NVSSPI25XDevice1.chipSelect.$assign          = "DIO_20";
+NVSSPI25XDevice1.chipSelectPinInstance.$name = "CONFIG_GPIO_SPI_FLASH_CS";
+
+const SPI                          = scripting.addModule("/ti/drivers/SPI", {}, false);
+const SPI1                         = SPI.addInstance({}, false);
+NVSSPI25XDevice1.sharedSpiInstance = SPI1;
+SPI1.$name                         = "Board_SPI_0";
+SPI1.spi.$assign                   = "SSI0";
+SPI1.spi.sclkPin.$assign           = "DIO_10";
+SPI1.spi.pociPin.$assign           = "DIO_8";
+SPI1.spi.picoPin.$assign           = "DIO_9";
+SPI1.spi.dmaRxChannel.$assign      = "DMA_CH3";
+SPI1.spi.dmaTxChannel.$assign      = "DMA_CH4";
+
+BIOS.assertsEnabled = false;
+BIOS.rtsGateType    = "BIOS_GateMutexPri";
+BIOS.heapSize       = 0x00000000;
+BIOS.heapType       = "HeapCallback";
+
+Hwi.enableException = false;
+Hwi.nvicCCR         = [];
+
+HeapCallback.initFxn           = "osalHeapInitFxn";
+HeapCallback.allocInstFxn      = "osalHeapAllocFxn";
+HeapCallback.freeInstFxn       = "osalHeapFreeFxn";
+HeapCallback.getStatsInstFxn   = "osalHeapGetStatsFxn";
+HeapCallback.isBlockingInstFxn = "osalHeapIsBlockingFxn";
+
+Clock.tickPeriod = 10;
+
+const Timer = scripting.addModule("/ti/sysbios/family/arm/cc26xx/Timer", {}, false);
+
+Idle1.$name   = "powerIdle";
+Idle1.idleFxn = "Power_idleFunc";
+
+Semaphore.supportsPriority = false;
+
+Swi.numPriorities = 6;
+
+Task.checkStackFlag    = false;
+Task.defaultStackSize  = 512;
+Task.idleTaskStackSize = 512;
+Task.numPriorities     = 6;
+
+SysCallback.putchFxn = "ns_put_char_blocking";
+
+System.abortFxn          = "System_abortSpin";
+System.exitFxn           = "System_exitSpin";
+System.maxAtexitHandlers = 2;
+System.extendedFormats   = "%f%$S";
+System.supportModule     = "SysCallback";
+
+ti_wisunfan.project                            = "coapnode";
+ti_wisunfan.lockProject                        = true;
+ti_wisunfan.rxOnIdle                           = true;
+ti_wisunfan.genLibs                            = "macOnly";
+ti_wisunfan.region                             = "EU";
+ti_wisunfan.panID                              = 0xABCD;
+ti_wisunfan.fhNetname                          = "Wi-SUN Network";
+ti_wisunfan.transmitPower                      = "14";
+ti_wisunfan.keyTableDefaultKey                 = "123456789ABCDEF00000000000000000";
+ti_wisunfan.radioConfig.$name                  = "ti_devices_radioconfig_settings_prop0";
+ti_wisunfan.radioConfig.codeExportConfig.$name = "ti_devices_radioconfig_code_export_param0";
+ti_wisunfan.aesccmModule.$name                 = "CONFIG_AESCCM_0";
+ti_wisunfan.aesecbModule.$name                 = "CONFIG_AESECB_0";
+ti_wisunfan.aescbcModule.$name                 = "CONFIG_AESCBC_0";
+ti_wisunfan.ti_wisunfanOpts.$name              = "ti_ti_wisunfan_ti_wisunfan_config_opts0";
