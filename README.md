@@ -17,6 +17,7 @@ AT command set firmware for Texas Instruments CC1352P7
 ## Compile
 1. Update `export.sh` with installation paths and run it to set environment variables
 2. From the `Release/` directory, run
+    > `make sysconfig-[region]` (replace [region] with the actual region to build) \
     > `make -j4 all`
 
 ## Install
@@ -27,8 +28,8 @@ To run without a bootloader, change `MCUBOOT_HEAD_SIZE` and `ENTRY_SIZE` to `0x0
 and flash `wisun_iot_modem-noheader.bin` (or `wisun_iot_modem.out` directly) to address 0x0.
 
 ## Use
-UART pins are configured in `ti_wisunfan_coap_node.syscfg`. Default configuration uses pins
-DIO16 for RX and DIO17 for TX at a rate of 115200.
+UART pins are configured in `wisun_*.syscfg`. Default configuration uses pins
+DIO16 for TX and DIO17 for RX at a rate of 115200.
 
 Check `static struct cat_command cmds[]` in `application.c` for a list of available AT commands.
 
