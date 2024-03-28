@@ -43,7 +43,7 @@
 #include <pthread.h>
 
 /* Driver configuration */
-#include "syscfg/ti_drivers_config.h"
+#include "ti_drivers_config.h"
 #include <ti/drivers/Board.h>
 #include <ti/drivers/GPIO.h>
 #include <ti/drivers/apps/Button.h>

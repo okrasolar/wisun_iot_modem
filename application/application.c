@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2023 Okra Solar Pty Ltd.
+Copyright (c) 2024 Okra Solar Pty Ltd.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -48,10 +48,8 @@ SOFTWARE.
 #include <ti/drivers/dpl/ClockP.h>
 
 /* Driver configuration */
-#include "syscfg/ti_drivers_config.h"
-#include "syscfg/ti_wisunfan_config.h"
-
-#include "lib/driverlib/sys_ctrl.h"
+#include "ti_drivers_config.h"
+#include "ti_wisunfan_config.h"
 
 #include "nsconfig.h"
 #include "mesh_system.h"
@@ -142,6 +140,22 @@ uint8_t nbr_idx = 0;
 nbr_node_metrics_t nbr_nodes_metrics[SIZE_OF_NEIGH_LIST];
 
 uint8_t get_current_net_state(void);
+
+ti_wisun_config_t ti_wisun_config =
+{
+    .rapid_join = FEATURE_RAPID_JOIN_ENABLE,
+    .mpl_low_latency = FEATURE_MPL_LOW_LATENCY_ENABLE,
+    .rapid_disconnect_detect_br = FEATURE_RAPID_DISCONNECT_DETECT_BR_SEC,
+    .rapid_disconnect_detect_rn = FEATURE_RAPID_DISCONNECT_DETECT_RN_SEC,
+    .auth_type  = NETWORK_AUTH_TYPE,
+    .use_fixed_gtk_keys = false,
+    .fixed_gtk_keys = {
+        FIXED_GTK_KEY_1,
+        FIXED_GTK_KEY_2,
+        FIXED_GTK_KEY_3,
+        FIXED_GTK_KEY_4,
+    },
+};
 
 configurable_props_t cfg_props = { .phyTxPower = CONFIG_TRANSMIT_POWER,
     .ccaDefaultdBm = CONFIG_CCA_THRESHOLD,

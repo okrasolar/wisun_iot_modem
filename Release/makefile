@@ -18,7 +18,7 @@ NAME = wisun_iot_modem
 
 # Each config-specific .mak file will initialize appropriate options (AFLAGS, CFLAGS, LFLAGS),
 # which will then be appended to below.
-CONFIG := RELEASE
+CONFIG := SECUREBOOT
 ifeq ($(CONFIG), RELEASE)
 	include Release.mak
 else ifeq ($(CONFIG), SECUREBOOT)
@@ -319,7 +319,7 @@ LFLAGS += "-L$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source" \
     -Wl,--diag_wrap=off \
     "-Wl,--xml_link_info=$(NAME)_linkInfo.xml" \
     ti_utils_build_linker.cmd.genlibs \
-    ../Release/cc13x2x7_cc26x2x7.cmd \
+    ../cc13x2x7_cc26x2x7.cmd \
     "-Wl,-m,$(NAME).map" \
     -Wl,--rom_model \
     -Wl,--warn_sections \
