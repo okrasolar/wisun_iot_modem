@@ -141,13 +141,12 @@ nbr_node_metrics_t nbr_nodes_metrics[SIZE_OF_NEIGH_LIST];
 
 uint8_t get_current_net_state(void);
 
-ti_wisun_config_t ti_wisun_config =
-{
+ti_wisun_config_t ti_wisun_config = {
     .rapid_join = FEATURE_RAPID_JOIN_ENABLE,
     .mpl_low_latency = FEATURE_MPL_LOW_LATENCY_ENABLE,
     .rapid_disconnect_detect_br = FEATURE_RAPID_DISCONNECT_DETECT_BR_SEC,
     .rapid_disconnect_detect_rn = FEATURE_RAPID_DISCONNECT_DETECT_RN_SEC,
-    .auth_type  = NETWORK_AUTH_TYPE,
+    .auth_type = NETWORK_AUTH_TYPE,
     .use_fixed_gtk_keys = false,
     .fixed_gtk_keys = {
         FIXED_GTK_KEY_1,
