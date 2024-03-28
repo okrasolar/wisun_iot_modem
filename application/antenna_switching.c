@@ -66,17 +66,16 @@ void rfDriverCallbackAntennaSwitching(RF_Handle client, RF_GlobalEvent events, v
                 /* PA enable --> HIGH PA
                  * LNA enable --> Sub-1 GHz
                  */
-                GPIO_setMux(CONFIG_RF_24GHZ, IOC_PORT_GPIO);
+                GPIO_setConfigAndMux(CONFIG_RF_24GHZ, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
                 /* Note: RFC_GPO3 is a work-around because the RFC_GPO1 (PA enable signal) is sometimes not
                          de-asserted on CC1352 Rev A. */
-                GPIO_setMux(CONFIG_RF_HIGH_PA, IOC_PORT_RFC_GPO3);
-                GPIO_setMux(CONFIG_RF_SUB1GHZ, IOC_PORT_RFC_GPO0);
+                GPIO_setConfigAndMux(CONFIG_RF_HIGH_PA, GPIO_CFG_OUTPUT, IOC_PORT_RFC_GPO3);
+                GPIO_setConfigAndMux(CONFIG_RF_SUB1GHZ, GPIO_CFG_OUTPUT, IOC_PORT_RFC_GPO0);
             } else {
                 /* RF core active --> Sub-1 GHz */
-                GPIO_setMux(CONFIG_RF_24GHZ, IOC_PORT_GPIO);
-                GPIO_setMux(CONFIG_RF_HIGH_PA, IOC_PORT_GPIO);
-                GPIO_setMux(CONFIG_RF_SUB1GHZ, IOC_PORT_GPIO);
-                GPIO_write(CONFIG_RF_SUB1GHZ, 1);
+                GPIO_setConfigAndMux(CONFIG_RF_24GHZ, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
+                GPIO_setConfigAndMux(CONFIG_RF_HIGH_PA, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
+                GPIO_setConfigAndMux(CONFIG_RF_SUB1GHZ, GPIO_CFG_OUTPUT | GPIO_CFG_OUT_HIGH, IOC_PORT_GPIO);
             }
         } else {
             /* 2.4 GHz */
@@ -84,17 +83,16 @@ void rfDriverCallbackAntennaSwitching(RF_Handle client, RF_GlobalEvent events, v
                 /* PA enable --> HIGH PA
                  * LNA enable --> 2.4 GHz
                  */
-                GPIO_setMux(CONFIG_RF_24GHZ, IOC_PORT_RFC_GPO0);
+                GPIO_setConfigAndMux(CONFIG_RF_24GHZ, GPIO_CFG_OUTPUT, IOC_PORT_RFC_GPO0);
                 /* Note: RFC_GPO3 is a work-around because the RFC_GPO1 (PA enable signal) is sometimes not
                          de-asserted on CC1352 Rev A. */
-                GPIO_setMux(CONFIG_RF_HIGH_PA, IOC_PORT_RFC_GPO3);
-                GPIO_setMux(CONFIG_RF_SUB1GHZ, IOC_PORT_GPIO);
+                GPIO_setConfigAndMux(CONFIG_RF_HIGH_PA, GPIO_CFG_OUTPUT, IOC_PORT_RFC_GPO3);
+                GPIO_setConfigAndMux(CONFIG_RF_SUB1GHZ, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
             } else {
                 /* RF core active --> 2.4 GHz */
-                GPIO_setMux(CONFIG_RF_24GHZ, IOC_PORT_GPIO);
-                GPIO_setMux(CONFIG_RF_HIGH_PA, IOC_PORT_GPIO);
-                GPIO_setMux(CONFIG_RF_SUB1GHZ, IOC_PORT_GPIO);
-                GPIO_write(CONFIG_RF_24GHZ, 1);
+                GPIO_setConfigAndMux(CONFIG_RF_24GHZ, GPIO_CFG_OUTPUT | GPIO_CFG_OUT_HIGH, IOC_PORT_GPIO);
+                GPIO_setConfigAndMux(CONFIG_RF_HIGH_PA, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
+                GPIO_setConfigAndMux(CONFIG_RF_SUB1GHZ, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
             }
         }
     } else if (events & RF_GlobalEventRadioPowerDown) {
@@ -104,8 +102,8 @@ void rfDriverCallbackAntennaSwitching(RF_Handle client, RF_GlobalEvent events, v
         GPIO_write(CONFIG_RF_SUB1GHZ, 0);
 
         /* Reset the IO multiplexer to GPIO functionality */
-        GPIO_setMux(CONFIG_RF_24GHZ, IOC_PORT_GPIO);
-        GPIO_setMux(CONFIG_RF_HIGH_PA, IOC_PORT_GPIO);
-        GPIO_setMux(CONFIG_RF_SUB1GHZ, IOC_PORT_GPIO);
+        GPIO_setConfigAndMux(CONFIG_RF_24GHZ, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
+        GPIO_setConfigAndMux(CONFIG_RF_HIGH_PA, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
+        GPIO_setConfigAndMux(CONFIG_RF_SUB1GHZ, GPIO_CFG_OUTPUT, IOC_PORT_GPIO);
     }
 }

@@ -1,721 +1,1662 @@
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
+SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR ?= $(TI_LIB)
 
-CG_TOOL_ROOT := $(TI_TOOLS_ROOT)
-CG_DRIVER_LIB := $(TI_LIB)
-CG_PROJECT_FOLDER := $(TI_PROJECT_FOLDER_MODEM)
-CG_SYSCONFIG_FOLDER = $(TI_SYSCONFIG)
+include $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/imports.mak
 
-GEN_OPTS__FLAG :=
-GEN_CMDS__FLAG :=
+CC = "$(TI_TOOLS_ROOT)/bin/tiarmclang"
+LNK = "$(TI_TOOLS_ROOT)/bin/tiarmclang"
+HEX = "$(TI_TOOLS_ROOT)/bin/tiarmobjcopy"
 
-ORDERED_OBJS += \
-"./syscfg/ti_radio_config.o" \
-"./syscfg/ti_drivers_config.o" \
-"./syscfg/ti_sysbios_config.o" \
-"./application/antenna_switching.o" \
-"./application/application.o" \
-"./application/main.o" \
-"./application/cat.o" \
-"./application/flash_interface_ext_rtos_NVS.o" \
-"./application/shell/ns_cmdline.o" \
-"./application/oad.o" \
-"./application/oad_storage.o" \
-"./mbed/frameworks/mbed-client-randlib/source/randLIB.o" \
-"./mbed/frameworks/mbed-coap/source/sn_coap_builder.o" \
-"./mbed/frameworks/mbed-coap/source/sn_coap_header_check.o" \
-"./mbed/frameworks/mbed-coap/source/sn_coap_parser.o" \
-"./mbed/frameworks/mbed-coap/source/sn_coap_protocol.o" \
-"./mbed/frameworks/nanostack-libservice/source/IPv6_fcf_lib/ip_fsc.o" \
-"./mbed/frameworks/nanostack-libservice/source/libBits/common_functions.o" \
-"./mbed/frameworks/nanostack-libservice/source/libList/ns_list.o" \
-"./mbed/frameworks/nanostack-libservice/source/libip6string/ip6tos.o" \
-"./mbed/frameworks/nanostack-libservice/source/libip6string/stoip6.o" \
-"./mbed/frameworks/nanostack-libservice/source/nsdynmemLIB/nsdynmemLIB.o" \
-"./mbed/frameworks/nanostack-libservice/source/nsdynmemtracker/nsdynmem_tracker_lib.o" \
-"./mbed/mbed-trace/mbed_trace.o" \
-"./mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_fhss_timer.o" \
-"./mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_interrupt.o" \
-"./mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_random.o" \
-"./mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_timer.o" \
-"./mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop.o" \
-"./mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop_mutex.o" \
-"./mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_hal_init.o" \
-"./mbed/mbednanostack2tirtos/platform/ns_trace.o" \
-"./mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto.o" \
-"./mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_se.o" \
-"./mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_slot_management.o" \
-"./mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_storage.o" \
-"./mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_its_file.o" \
-"./mbed/mbedtls/src/aes.o" \
-"./mbed/mbedtls/src/aesni.o" \
-"./mbed/mbedtls/src/arc4.o" \
-"./mbed/mbedtls/src/aria.o" \
-"./mbed/mbedtls/src/asn1parse.o" \
-"./mbed/mbedtls/src/asn1write.o" \
-"./mbed/mbedtls/src/base64.o" \
-"./mbed/mbedtls/src/bignum.o" \
-"./mbed/mbedtls/src/blowfish.o" \
-"./mbed/mbedtls/src/camellia.o" \
-"./mbed/mbedtls/src/ccm.o" \
-"./mbed/mbedtls/src/certs.o" \
-"./mbed/mbedtls/src/chacha20.o" \
-"./mbed/mbedtls/src/chachapoly.o" \
-"./mbed/mbedtls/src/cipher.o" \
-"./mbed/mbedtls/src/cipher_wrap.o" \
-"./mbed/mbedtls/src/cmac.o" \
-"./mbed/mbedtls/src/ctr_drbg.o" \
-"./mbed/mbedtls/src/debug.o" \
-"./mbed/mbedtls/src/des.o" \
-"./mbed/mbedtls/src/dhm.o" \
-"./mbed/mbedtls/src/ecdh.o" \
-"./mbed/mbedtls/src/ecdsa.o" \
-"./mbed/mbedtls/src/ecjpake.o" \
-"./mbed/mbedtls/src/ecp.o" \
-"./mbed/mbedtls/src/ecp_curves.o" \
-"./mbed/mbedtls/src/entropy.o" \
-"./mbed/mbedtls/src/entropy_poll.o" \
-"./mbed/mbedtls/src/error.o" \
-"./mbed/mbedtls/src/gcm.o" \
-"./mbed/mbedtls/src/havege.o" \
-"./mbed/mbedtls/src/hkdf.o" \
-"./mbed/mbedtls/src/hmac_drbg.o" \
-"./mbed/mbedtls/src/md.o" \
-"./mbed/mbedtls/src/md2.o" \
-"./mbed/mbedtls/src/md4.o" \
-"./mbed/mbedtls/src/md5.o" \
-"./mbed/mbedtls/src/memory_buffer_alloc.o" \
-"./mbed/mbedtls/src/nist_kw.o" \
-"./mbed/mbedtls/src/oid.o" \
-"./mbed/mbedtls/src/padlock.o" \
-"./mbed/mbedtls/src/pem.o" \
-"./mbed/mbedtls/src/pk.o" \
-"./mbed/mbedtls/src/pk_wrap.o" \
-"./mbed/mbedtls/src/pkcs11.o" \
-"./mbed/mbedtls/src/pkcs12.o" \
-"./mbed/mbedtls/src/pkcs5.o" \
-"./mbed/mbedtls/src/pkparse.o" \
-"./mbed/mbedtls/src/pkwrite.o" \
-"./mbed/mbedtls/src/platform.o" \
-"./mbed/mbedtls/src/poly1305.o" \
-"./mbed/mbedtls/src/ripemd160.o" \
-"./mbed/mbedtls/src/rsa.o" \
-"./mbed/mbedtls/src/rsa_internal.o" \
-"./mbed/mbedtls/src/sha1.o" \
-"./mbed/mbedtls/src/sha256.o" \
-"./mbed/mbedtls/src/sha512.o" \
-"./mbed/mbedtls/src/ssl_cache.o" \
-"./mbed/mbedtls/src/ssl_ciphersuites.o" \
-"./mbed/mbedtls/src/ssl_cli.o" \
-"./mbed/mbedtls/src/ssl_cookie.o" \
-"./mbed/mbedtls/src/ssl_msg.o" \
-"./mbed/mbedtls/src/ssl_srv.o" \
-"./mbed/mbedtls/src/ssl_ticket.o" \
-"./mbed/mbedtls/src/ssl_tls.o" \
-"./mbed/mbedtls/src/timing.o" \
-"./mbed/mbedtls/src/version.o" \
-"./mbed/mbedtls/src/version_features.o" \
-"./mbed/mbedtls/src/x509.o" \
-"./mbed/mbedtls/src/x509_create.o" \
-"./mbed/mbedtls/src/x509_crl.o" \
-"./mbed/mbedtls/src/x509_crt.o" \
-"./mbed/mbedtls/src/x509_csr.o" \
-"./mbed/mbedtls/src/x509write_crt.o" \
-"./mbed/mbedtls/src/x509write_csr.o" \
-"./mbed/mbedtls/src/xtea.o" \
-"./mbed/mbedtls2tirtos/mbedtls/mbed-crypto/aes_alt.o" \
-"./mbed/mbedtls2tirtos/mbedtls/mbed-crypto/crypto_device_platform.o" \
-"./mbed/mbedtls2tirtos/mbedtls/mbed-crypto/crypto_misc.o" \
-"./mbed/mbedtls2tirtos/mbedtls/mbed-crypto/ecjpake_alt.o" \
-"./mbed/mbedtls2tirtos/mbedtls/mbed-crypto/platform_util.o" \
-"./mbed/mbedtls2tirtos/mbedtls/mbed-crypto/sha256_alt.o" \
-"./mbed/mbedtls2tirtos/mbedtls/mbed-crypto/threading.o" \
-"./mbed/mbedtls2tirtos/platform/mbed_trng_alt.o" \
-"./mbed/nanostack/coap-service/source/coap_connection_handler.o" \
-"./mbed/nanostack/coap-service/source/coap_message_handler.o" \
-"./mbed/nanostack/coap-service/source/coap_security_handler.o" \
-"./mbed/nanostack/coap-service/source/coap_service_api.o" \
-"./mbed/nanostack/mbed-mesh-api/source/ethernet_tasklet.o" \
-"./mbed/nanostack/mbed-mesh-api/source/mesh_system.o" \
-"./mbed/nanostack/mbed-mesh-api/source/wisun_tasklet.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/network_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_bootstrap.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_interface.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Fragmentation/cipv6_fragmenter.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/6lowpan_iphc.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_compress.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_decompress.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/lowpan_context.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/beacon_handler.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_data_poll.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_helper.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_ie_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_pairwise_key.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Mesh/mesh.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ND/nd_router_object.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/NVM/nwk_nvm.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/adaptation_interface.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_bootstrap.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_cfg_settings.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_common.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_auth_relay.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_pdu.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_empty_functions.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_ie_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_llc_data_service.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_management_api.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_mpx_header.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_neighbor_class.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_auth.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_controller.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_key_storage.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_data.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_store.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_supp.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_time.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_timers.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_stats.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_test_api.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/BorderRouter/border_router.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_prefix.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_radv.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_flow.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_fragmentation.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_resolution.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/mld.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/tcp.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/udp.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Core/buffer_dyn.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Core/ns_address_internal.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Core/ns_monitor.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Core/ns_socket.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Core/sockbuf.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/DHCPv6_Server/DHCPv6_Server_service.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client/dhcpv6_client_service.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/MAC/rf_driver_storage.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/MLE/mle.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/MLE/mle_tlv.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/MPL/mpl.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core_sleep.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_stats.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_timer.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_control.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_data.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_downward.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_mrhof.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_objective.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_of0.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_policy.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_upward.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/Common/security_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/eap_protocol.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_avp.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_client.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_eap_header.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_header.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_relay_table.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_server.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_ccm_crypt.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/eapol/eapol_helper.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/eapol/kde_helper.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_addr.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_api.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_eapol_pdu_if.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_socket_if.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/auth_eap_tls_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/eap_tls_sec_prot_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/radius_eap_tls_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/supp_eap_tls_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/auth_fwh_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/supp_fwh_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/auth_gkh_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/supp_gkh_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/key_sec_prot/key_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/avp_helper.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/radius_client_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_certs.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_keys.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot_lib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/ccm_security.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls_adapter.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Neighbor_cache/neighbor_cache.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/ns_sha256.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/shalib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Trickle/trickle.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/blacklist/blacklist.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/etx/etx.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fhss/channel_list.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash/fnv_hash.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac/hmac_md.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/ieee_802_11/ieee_802_11.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance/load_balance.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mac_neighbor_table/mac_neighbor_table.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns/fnet_mdns.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/poll/fnet_poll.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack/fnet_stdlib.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_events.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_port.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_mdns_api.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_buffer.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_frame_counter_table.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_interface.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_security.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nd_proxy/nd_proxy.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nist_aes_kw/nist_aes_kw.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist/pan_blacklist.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/random_early_detection/random_early_detection.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/isqrt.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_conf.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_crc.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_file_system.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard/whiteboard.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/ipv6_routing_table.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/protocol_ipv6.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/dhcp_service_api.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_server.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_vendordata.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/multicast_api.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_6lowpan_parameter_api.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_dns.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_ipv6.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_load_balance.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_mle.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_rpl.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_short_address_extension.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_test.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/ns_net.o" \
-"./mbed/nanostack/sal-stack-nanostack/source/libNET/src/socket_api.o" \
-"./mbed/nanostack/sal-stack-nanostack-eventloop/source/event.o" \
-"./mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timeout.o" \
-"./mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timer.o" \
-"./mbed/nanostack/sal-stack-nanostack-eventloop/source/system_timer.o" \
-"./mbed/ti-nv-driver/crc.o" \
-"./mbed/ti-nv-driver/nvocmp.o" \
-"./mbed/ti-rf-driver/source/RFQueue.o" \
-"./software_stack/ti15_4mac/macTask.o" \
-"./software_stack/ti15_4mac/mac_settings/mac_cfg.o" \
-"./software_stack/ti15_4mac/mac_settings/mac_settings.o" \
-"./software_stack/ti15_4mac/osal_port/osal_port.o" \
-"./software_stack/ti15_4mac/osal_port/osal_port_timers.o" \
-"./software_stack/ti15_4mac/radio_configuration/mac_user_config.o" \
-"./software_stack/ti15_4mac/stack_user_api/api_mac/api_mac.o" \
-"./software_stack/ti15_4mac/stack_user_api/api_mac/timac_fhss_config.o" \
-"./wisun_ncp/platform/misc.o" \
-"./wisun_ncp/src/core/api/instance_api.o" \
-"./wisun_ncp/src/core/api/logging_api.o" \
-"./wisun_ncp/src/core/api/message_api.o" \
-"./wisun_ncp/src/core/common/crc16.o" \
-"./wisun_ncp/src/core/common/instance.o" \
-"./wisun_ncp/src/core/common/logging.o" \
-"./wisun_ncp/src/core/common/message.o" \
-"./wisun_ncp/src/core/common/notifier.o" \
-"./wisun_ncp/src/core/common/string.o" \
-"./wisun_ncp/src/core/common/tasklet.o" \
-"./wisun_ncp/src/core/common/timer.o" \
-"./wisun_ncp/src/core/common/tlvs.o" \
-"./wisun_ncp/src/lib/hdlc/hdlc.o" \
-"./wisun_ncp/src/lib/spinel/spinel.o" \
-"./wisun_ncp/src/lib/spinel/spinel_buffer.o" \
-"./wisun_ncp/src/lib/spinel/spinel_decoder.o" \
-"./wisun_ncp/src/lib/spinel/spinel_encoder.o" \
-"./wisun_ncp/src/ncp/changed_props_set.o" \
-"./wisun_ncp/src/ncp/ncp_base.o" \
-"./wisun_ncp/src/ncp/ncp_base_dispatcher.o" \
-"./wisun_ncp/src/ncp/ncp_uart.o" \
-"../cc13x2x7_cc26x2x7.cmd" \
-$(GEN_CMDS__FLAG) \
--Wl,-l"syscfg/ti_utils_build_linker.cmd.genlibs" \
--Wl,-l"$(CG_DRIVER_LIB)/source/ti/devices/cc13x2x7_cc26x2x7/driverlib/bin/ticlang/driverlib.lib" \
--Wl,-llibc.a \
+SYSCFG_CMD_STUB = $(TI_SYSCONFIG)/sysconfig_cli.sh --compiler ticlang --product $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/.metadata/product.json
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../ti_wisunfan_coap_node.syscfg)
 
-RM := rm -rf
-RMDIR := rm -rf
+SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
+SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
+SYSCFG_OPT_FILES = $(filter %.opt,$(SYSCFG_FILES))
 
-# All Target
-all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "wisun_iot_modem.out"
+OBJECTS = antenna_switching.obj application.obj cat.obj flash_interface_ext_rtos_NVS.obj main.obj oad.obj oad_storage.obj mbed_ti-rf-driver_source_RFQueue.obj mbed_ti-nv-driver_crc.obj mbed_ti-nv-driver_nvocmp.obj mbed_frameworks_mbed-coap_source_sn_coap_builder.obj mbed_frameworks_mbed-coap_source_sn_coap_header_check.obj mbed_frameworks_mbed-coap_source_sn_coap_parser.obj mbed_frameworks_mbed-coap_source_sn_coap_protocol.obj mbed_nanostack_coap-service_source_coap_connection_handler.obj mbed_nanostack_coap-service_source_coap_message_handler.obj mbed_nanostack_coap-service_source_coap_security_handler.obj mbed_nanostack_coap-service_source_coap_service_api.obj mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_interrupt.obj mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_random.obj mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_timer.obj mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_ns_event_loop.obj mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_ns_event_loop_mutex.obj mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_ns_hal_init.obj mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_fhss_timer.obj mbed_mbednanostack2tirtos_platform_ns_trace.obj software_stack_ti15_4mac_mac_settings_mac_cfg.obj software_stack_ti15_4mac_mac_settings_mac_settings.obj software_stack_ti15_4mac_radio_configuration_mac_user_config.obj software_stack_ti15_4mac_macTask.obj software_stack_ti15_4mac_stack_user_api_api_mac_api_mac.obj software_stack_ti15_4mac_stack_user_api_api_mac_timac_fhss_config.obj software_stack_ti15_4mac_osal_port_osal_port.obj software_stack_ti15_4mac_osal_port_osal_port_timers.obj mbed_nanostack_mbed-mesh-api_source_wisun_tasklet.obj mbed_mbedtls2tirtos_platform_mbed_trng_alt.obj mbed_mbedtls2tirtos_mbedtls_mbed-crypto_platform_util.obj mbed_mbedtls2tirtos_mbedtls_mbed-crypto_threading.obj mbed_mbedtls2tirtos_mbedtls_mbed-crypto_crypto_device_platform.obj mbed_mbedtls2tirtos_mbedtls_mbed-crypto_aes_alt.obj mbed_mbedtls2tirtos_mbedtls_mbed-crypto_crypto_misc.obj mbed_mbedtls2tirtos_mbedtls_mbed-crypto_ecjpake_alt.obj mbed_mbedtls2tirtos_mbedtls_mbed-crypto_sha256_alt.obj application_shell_ns_cmdline.obj mbed_frameworks_mbed-client-randlib_source_randLIB.obj mbed_frameworks_nanostack-libservice_source_IPv6_fcf_lib_ip_fsc.obj mbed_frameworks_nanostack-libservice_source_libBits_common_functions.obj mbed_frameworks_nanostack-libservice_source_libList_ns_list.obj mbed_frameworks_nanostack-libservice_source_libip6string_ip6tos.obj mbed_frameworks_nanostack-libservice_source_libip6string_stoip6.obj mbed_frameworks_nanostack-libservice_source_nsdynmemLIB_nsdynmemLIB.obj mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto.obj mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto_se.obj mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto_slot_management.obj mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto_storage.obj mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_its_file.obj mbed_mbedtls_src_aes.obj mbed_mbedtls_src_aesni.obj mbed_mbedtls_src_arc4.obj mbed_mbedtls_src_aria.obj mbed_mbedtls_src_asn1parse.obj mbed_mbedtls_src_asn1write.obj mbed_mbedtls_src_base64.obj mbed_mbedtls_src_bignum.obj mbed_mbedtls_src_blowfish.obj mbed_mbedtls_src_camellia.obj mbed_mbedtls_src_ccm.obj mbed_mbedtls_src_chacha20.obj mbed_mbedtls_src_chachapoly.obj mbed_mbedtls_src_cipher.obj mbed_mbedtls_src_cipher_wrap.obj mbed_mbedtls_src_cmac.obj mbed_mbedtls_src_ctr_drbg.obj mbed_mbedtls_src_des.obj mbed_mbedtls_src_dhm.obj mbed_mbedtls_src_ecdh.obj mbed_mbedtls_src_ecdsa.obj mbed_mbedtls_src_ecjpake.obj mbed_mbedtls_src_ecp.obj mbed_mbedtls_src_ecp_curves.obj mbed_mbedtls_src_entropy.obj mbed_mbedtls_src_entropy_poll.obj mbed_mbedtls_src_gcm.obj mbed_mbedtls_src_havege.obj mbed_mbedtls_src_hkdf.obj mbed_mbedtls_src_hmac_drbg.obj mbed_mbedtls_src_md.obj mbed_mbedtls_src_md2.obj mbed_mbedtls_src_md4.obj mbed_mbedtls_src_md5.obj mbed_mbedtls_src_memory_buffer_alloc.obj mbed_mbedtls_src_nist_kw.obj mbed_mbedtls_src_oid.obj mbed_mbedtls_src_padlock.obj mbed_mbedtls_src_pem.obj mbed_mbedtls_src_pk.obj mbed_mbedtls_src_pk_wrap.obj mbed_mbedtls_src_pkcs12.obj mbed_mbedtls_src_pkcs5.obj mbed_mbedtls_src_pkparse.obj mbed_mbedtls_src_pkwrite.obj mbed_mbedtls_src_platform.obj mbed_mbedtls_src_poly1305.obj mbed_mbedtls_src_ripemd160.obj mbed_mbedtls_src_rsa.obj mbed_mbedtls_src_rsa_internal.obj mbed_mbedtls_src_sha1.obj mbed_mbedtls_src_sha256.obj mbed_mbedtls_src_sha512.obj mbed_mbedtls_src_timing.obj mbed_mbedtls_src_xtea.obj mbed_mbedtls_src_certs.obj mbed_mbedtls_src_debug.obj mbed_mbedtls_src_error.obj mbed_mbedtls_src_pkcs11.obj mbed_mbedtls_src_ssl_cache.obj mbed_mbedtls_src_ssl_ciphersuites.obj mbed_mbedtls_src_ssl_cli.obj mbed_mbedtls_src_ssl_cookie.obj mbed_mbedtls_src_ssl_srv.obj mbed_mbedtls_src_ssl_msg.obj mbed_mbedtls_src_ssl_ticket.obj mbed_mbedtls_src_ssl_tls.obj mbed_mbedtls_src_version.obj mbed_mbedtls_src_version_features.obj mbed_mbedtls_src_x509.obj mbed_mbedtls_src_x509_create.obj mbed_mbedtls_src_x509_crl.obj mbed_mbedtls_src_x509_crt.obj mbed_mbedtls_src_x509_csr.obj mbed_mbedtls_src_x509write_crt.obj mbed_mbedtls_src_x509write_csr.obj mbed_nanostack_mbed-mesh-api_source_ethernet_tasklet.obj mbed_nanostack_mbed-mesh-api_source_mesh_system.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_network_lib.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_protocol_6lowpan.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_protocol_6lowpan_bootstrap.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_protocol_6lowpan_interface.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Fragmentation_cipv6_fragmenter.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_6lowpan_iphc.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_iphc_compress.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_iphc_decompress.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_lowpan_context.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_beacon_handler.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_data_poll.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_helper.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_ie_lib.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_pairwise_key.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Mesh_mesh.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ND_nd_router_object.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_NVM_nwk_nvm.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_adaptation_interface.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_cfg_settings.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_bootstrap.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_common.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_auth_relay.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_pdu.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_relay.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_relay_lib.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_empty_functions.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_ie_lib.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_llc_data_service.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_management_api.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_mpx_header.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_neighbor_class.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_key_storage.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_time.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_auth.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_controller.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_lib.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_nvm_data.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_nvm_store.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_supp.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_timers.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_stats.obj mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_test_api.obj mbed_nanostack_sal-stack-nanostack_source_BorderRouter_border_router.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_icmpv6.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_icmpv6_prefix.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_icmpv6_radv.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6_flow.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6_fragmentation.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6_resolution.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_mld.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_tcp.obj mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_udp.obj mbed_nanostack_sal-stack-nanostack_source_Core_buffer_dyn.obj mbed_nanostack_sal-stack-nanostack_source_Core_ns_address_internal.obj mbed_nanostack_sal-stack-nanostack_source_Core_ns_monitor.obj mbed_nanostack_sal-stack-nanostack_source_Core_ns_socket.obj mbed_nanostack_sal-stack-nanostack_source_Core_sockbuf.obj mbed_nanostack_sal-stack-nanostack_source_DHCPv6_Server_DHCPv6_Server_service.obj mbed_nanostack_sal-stack-nanostack_source_DHCPv6_client_dhcpv6_client_service.obj mbed_nanostack_sal-stack-nanostack_source_MAC_rf_driver_storage.obj mbed_nanostack_sal-stack-nanostack_source_MLE_mle.obj mbed_nanostack_sal-stack-nanostack_source_MLE_mle_tlv.obj mbed_nanostack_sal-stack-nanostack_source_MPL_mpl.obj mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_core.obj mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_core_sleep.obj mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_stats.obj mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_timer.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_control.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_data.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_downward.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_mrhof.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_objective.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_of0.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_policy.obj mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_upward.obj mbed_nanostack_sal-stack-nanostack_source_Security_Common_security_lib.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_eap_protocol.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_avp.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_client.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_eap_header.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_header.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_relay_table.obj mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_server.obj mbed_nanostack_sal-stack-nanostack_source_Security_TLS_tls_ccm_crypt.obj mbed_nanostack_sal-stack-nanostack_source_Security_TLS_tls_lib.obj mbed_nanostack_sal-stack-nanostack_source_Security_eapol_eapol_helper.obj mbed_nanostack_sal-stack-nanostack_source_Security_eapol_kde_helper.obj mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_addr.obj mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_api.obj mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_eapol_pdu_if.obj mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_socket_if.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_radius_sec_prot_avp_helper.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_radius_sec_prot_radius_client_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_radius_eap_tls_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_auth_eap_tls_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_eap_tls_sec_prot_lib.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_supp_eap_tls_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_fwh_sec_prot_auth_fwh_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_fwh_sec_prot_supp_fwh_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_gkh_sec_prot_auth_gkh_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_gkh_sec_prot_supp_gkh_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_key_sec_prot_key_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_sec_prot_certs.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_sec_prot_keys.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_sec_prot_lib.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_tls_sec_prot_tls_sec_prot.obj mbed_nanostack_sal-stack-nanostack_source_Security_protocols_tls_sec_prot_tls_sec_prot_lib.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_CCM_lib_ccm_security.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_CCM_lib_mbedOS_aes_mbedtls.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_CCM_lib_mbedOS_aes_mbedtls_adapter.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_Neighbor_cache_neighbor_cache.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_SHA256_Lib_ns_sha256.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_SHA256_Lib_shalib.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_Trickle_trickle.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_blacklist_blacklist.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_etx_etx.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_fhss_channel_list.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_fnv_hash_fnv_hash.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_hmac_hmac_md.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_ieee_802_11_ieee_802_11.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_load_balance_load_balance.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mac_neighbor_table_mac_neighbor_table.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_fnet_fnet_stack_services_mdns_fnet_mdns.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_fnet_fnet_stack_services_poll_fnet_poll.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_fnet_fnet_stack_stack_fnet_stdlib.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_ns_fnet_events.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_ns_fnet_port.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_ns_mdns_api.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_buffer.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_frame_counter_table.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_interface.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_security.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_nd_proxy_nd_proxy.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_nist_aes_kw_nist_aes_kw.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_pan_blacklist_pan_blacklist.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_isqrt.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_ns_conf.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_ns_crc.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_ns_file_system.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_whiteboard_whiteboard.obj mbed_nanostack_sal-stack-nanostack_source_Service_Libs_random_early_detection_random_early_detection.obj mbed_frameworks_nanostack-libservice_source_nsdynmemtracker_nsdynmem_tracker_lib.obj mbed_nanostack_sal-stack-nanostack_source_ipv6_stack_ipv6_routing_table.obj mbed_nanostack_sal-stack-nanostack_source_ipv6_stack_protocol_ipv6.obj mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_dhcp_service_api.obj mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_libDHCPv6.obj mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_libDHCPv6_server.obj mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_libDHCPv6_vendordata.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_multicast_api.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_dns.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_6lowpan_parameter_api.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_ipv6.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_load_balance.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_mle.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_rpl.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_short_address_extension.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_test.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_ns_net.obj mbed_nanostack_sal-stack-nanostack_source_libNET_src_socket_api.obj mbed_nanostack_sal-stack-nanostack-eventloop_source_event.obj mbed_nanostack_sal-stack-nanostack-eventloop_source_ns_timeout.obj mbed_nanostack_sal-stack-nanostack-eventloop_source_ns_timer.obj mbed_nanostack_sal-stack-nanostack-eventloop_source_system_timer.obj mbed_mbed-trace_mbed_trace.obj wisun_ncp_src_ncp_changed_props_set.obj wisun_ncp_src_ncp_ncp_base.obj wisun_ncp_src_ncp_ncp_base_dispatcher.obj wisun_ncp_src_ncp_ncp_uart.obj wisun_ncp_src_lib_hdlc_hdlc.obj wisun_ncp_src_lib_spinel_spinel.obj wisun_ncp_src_lib_spinel_spinel_buffer.obj wisun_ncp_src_lib_spinel_spinel_decoder.obj wisun_ncp_src_lib_spinel_spinel_encoder.obj wisun_ncp_src_core_api_message_api.obj wisun_ncp_src_core_api_logging_api.obj wisun_ncp_src_core_api_instance_api.obj wisun_ncp_src_core_common_crc16.obj wisun_ncp_src_core_common_instance.obj wisun_ncp_src_core_common_logging.obj wisun_ncp_src_core_common_message.obj wisun_ncp_src_core_common_notifier.obj wisun_ncp_src_core_common_string.obj wisun_ncp_src_core_common_tasklet.obj wisun_ncp_src_core_common_timer.obj wisun_ncp_src_core_common_tlvs.obj wisun_ncp_platform_misc.obj $(patsubst %.c,%.obj,$(notdir $(SYSCFG_C_FILES)))
+NAME = wisun_iot_modem
 
-# Print custom error message is sysconfig was not executed
-sysconfig-call:
-	@echo "Call 'make sysconfig-*' first!"
-	@exit 2
-
-# All of the sources participating in the build are defined here
--include sources.mk
--include subdir_vars.mk
--include application/subdir_vars.mk
--include application/shell/subdir_vars.mk
--include mbed/frameworks/mbed-client-randlib/source/subdir_vars.mk
--include mbed/frameworks/mbed-coap/source/subdir_vars.mk
--include mbed/frameworks/nanostack-libservice/source/IPv6_fcf_lib/subdir_vars.mk
--include mbed/frameworks/nanostack-libservice/source/libBits/subdir_vars.mk
--include mbed/frameworks/nanostack-libservice/source/libList/subdir_vars.mk
--include mbed/frameworks/nanostack-libservice/source/libip6string/subdir_vars.mk
--include mbed/frameworks/nanostack-libservice/source/nsdynmemLIB/subdir_vars.mk
--include mbed/frameworks/nanostack-libservice/source/nsdynmemtracker/subdir_vars.mk
--include mbed/mbed-trace/subdir_vars.mk
--include mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/subdir_vars.mk
--include mbed/mbednanostack2tirtos/platform/subdir_vars.mk
--include mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/subdir_vars.mk
--include mbed/mbedtls/src/subdir_vars.mk
--include mbed/mbedtls2tirtos/mbedtls/mbed-crypto/subdir_vars.mk
--include mbed/mbedtls2tirtos/platform/subdir_vars.mk
--include mbed/nanostack/coap-service/source/subdir_vars.mk
--include mbed/nanostack/mbed-mesh-api/source/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Fragmentation/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Mesh/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ND/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/NVM/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/BorderRouter/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Core/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/DHCPv6_Server/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/MAC/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/MLE/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/MPL/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/RPL/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/Common/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/PANA/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/TLS/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/eapol/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/kmp/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/key_sec_prot/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Neighbor_cache/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Trickle/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/blacklist/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/etx/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fhss/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/ieee_802_11/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mac_neighbor_table/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/poll/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nd_proxy/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nist_aes_kw/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/random_early_detection/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack/source/libNET/src/subdir_vars.mk
--include mbed/nanostack/sal-stack-nanostack-eventloop/source/subdir_vars.mk
--include mbed/ti-nv-driver/subdir_vars.mk
--include mbed/ti-rf-driver/source/subdir_vars.mk
--include software_stack/ti15_4mac/subdir_vars.mk
--include software_stack/ti15_4mac/mac_settings/subdir_vars.mk
--include software_stack/ti15_4mac/osal_port/subdir_vars.mk
--include software_stack/ti15_4mac/radio_configuration/subdir_vars.mk
--include software_stack/ti15_4mac/stack_user_api/api_mac/subdir_vars.mk
--include wisun_ncp/platform/subdir_vars.mk
--include wisun_ncp/src/core/api/subdir_vars.mk
--include wisun_ncp/src/core/common/subdir_vars.mk
--include wisun_ncp/src/lib/hdlc/subdir_vars.mk
--include wisun_ncp/src/lib/spinel/subdir_vars.mk
--include wisun_ncp/src/ncp/subdir_vars.mk
--include subdir_rules.mk
--include application/subdir_rules.mk
--include application/shell/subdir_rules.mk
--include mbed/frameworks/mbed-client-randlib/source/subdir_rules.mk
--include mbed/frameworks/mbed-coap/source/subdir_rules.mk
--include mbed/frameworks/nanostack-libservice/source/IPv6_fcf_lib/subdir_rules.mk
--include mbed/frameworks/nanostack-libservice/source/libBits/subdir_rules.mk
--include mbed/frameworks/nanostack-libservice/source/libList/subdir_rules.mk
--include mbed/frameworks/nanostack-libservice/source/libip6string/subdir_rules.mk
--include mbed/frameworks/nanostack-libservice/source/nsdynmemLIB/subdir_rules.mk
--include mbed/frameworks/nanostack-libservice/source/nsdynmemtracker/subdir_rules.mk
--include mbed/mbed-trace/subdir_rules.mk
--include mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/subdir_rules.mk
--include mbed/mbednanostack2tirtos/platform/subdir_rules.mk
--include mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/subdir_rules.mk
--include mbed/mbedtls/src/subdir_rules.mk
--include mbed/mbedtls2tirtos/mbedtls/mbed-crypto/subdir_rules.mk
--include mbed/mbedtls2tirtos/platform/subdir_rules.mk
--include mbed/nanostack/coap-service/source/subdir_rules.mk
--include mbed/nanostack/mbed-mesh-api/source/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Fragmentation/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Mesh/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ND/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/NVM/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/BorderRouter/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Core/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/DHCPv6_Server/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/MAC/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/MLE/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/MPL/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/RPL/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/Common/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/PANA/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/TLS/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/eapol/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/kmp/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/key_sec_prot/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Neighbor_cache/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Trickle/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/blacklist/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/etx/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fhss/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/ieee_802_11/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mac_neighbor_table/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/poll/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nd_proxy/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nist_aes_kw/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/random_early_detection/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack/source/libNET/src/subdir_rules.mk
--include mbed/nanostack/sal-stack-nanostack-eventloop/source/subdir_rules.mk
--include mbed/ti-nv-driver/subdir_rules.mk
--include mbed/ti-rf-driver/source/subdir_rules.mk
--include software_stack/ti15_4mac/subdir_rules.mk
--include software_stack/ti15_4mac/mac_settings/subdir_rules.mk
--include software_stack/ti15_4mac/osal_port/subdir_rules.mk
--include software_stack/ti15_4mac/radio_configuration/subdir_rules.mk
--include software_stack/ti15_4mac/stack_user_api/api_mac/subdir_rules.mk
--include wisun_ncp/platform/subdir_rules.mk
--include wisun_ncp/src/core/api/subdir_rules.mk
--include wisun_ncp/src/core/common/subdir_rules.mk
--include wisun_ncp/src/lib/hdlc/subdir_rules.mk
--include wisun_ncp/src/lib/spinel/subdir_rules.mk
--include wisun_ncp/src/ncp/subdir_rules.mk
--include objects.mk
-
-ifneq ($(MAKECMDGOALS),clean)
-ifneq ($(strip $(C55_DEPS)),)
--include $(C55_DEPS)
-endif
-ifneq ($(strip $(C_UPPER_DEPS)),)
--include $(C_UPPER_DEPS)
-endif
-ifneq ($(strip $(S67_DEPS)),)
--include $(S67_DEPS)
-endif
-ifneq ($(strip $(S62_DEPS)),)
--include $(S62_DEPS)
-endif
-ifneq ($(strip $(S_DEPS)),)
--include $(S_DEPS)
-endif
-ifneq ($(strip $(OPT_DEPS)),)
--include $(OPT_DEPS)
-endif
-ifneq ($(strip $(C??_DEPS)),)
--include $(C??_DEPS)
-endif
-ifneq ($(strip $(ASM_UPPER_DEPS)),)
--include $(ASM_UPPER_DEPS)
-endif
-ifneq ($(strip $(S??_DEPS)),)
--include $(S??_DEPS)
-endif
-ifneq ($(strip $(C64_DEPS)),)
--include $(C64_DEPS)
-endif
-ifneq ($(strip $(CXX_DEPS)),)
--include $(CXX_DEPS)
-endif
-ifneq ($(strip $(S64_DEPS)),)
--include $(S64_DEPS)
-endif
-ifneq ($(strip $(INO_DEPS)),)
--include $(INO_DEPS)
-endif
-ifneq ($(strip $(CLA_DEPS)),)
--include $(CLA_DEPS)
-endif
-ifneq ($(strip $(S55_DEPS)),)
--include $(S55_DEPS)
-endif
-ifneq ($(strip $(SV7A_DEPS)),)
--include $(SV7A_DEPS)
-endif
-ifneq ($(strip $(C62_DEPS)),)
--include $(C62_DEPS)
-endif
-ifneq ($(strip $(C67_DEPS)),)
--include $(C67_DEPS)
-endif
-ifneq ($(strip $(PDE_DEPS)),)
--include $(PDE_DEPS)
-endif
-ifneq ($(strip $(K_DEPS)),)
--include $(K_DEPS)
-endif
-ifneq ($(strip $(C_DEPS)),)
--include $(C_DEPS)
-endif
-ifneq ($(strip $(CC_DEPS)),)
--include $(CC_DEPS)
-endif
-ifneq ($(strip $(C++_DEPS)),)
--include $(C++_DEPS)
-endif
-ifneq ($(strip $(C43_DEPS)),)
--include $(C43_DEPS)
-endif
-ifneq ($(strip $(S43_DEPS)),)
--include $(S43_DEPS)
-endif
-ifneq ($(strip $(ASM_DEPS)),)
--include $(ASM_DEPS)
-endif
-ifneq ($(strip $(S_UPPER_DEPS)),)
--include $(S_UPPER_DEPS)
-endif
-ifneq ($(strip $(CPP_DEPS)),)
--include $(CPP_DEPS)
-endif
-ifneq ($(strip $(SA_DEPS)),)
--include $(SA_DEPS)
-endif
+# Each config-specific .mak file will initialize appropriate options (AFLAGS, CFLAGS, LFLAGS),
+# which will then be appended to below.
+CONFIG := RELEASE
+ifeq ($(CONFIG), RELEASE)
+	include Release.mak
+else ifeq ($(CONFIG), SECUREBOOT)
+	include SecureBoot.mak
 endif
 
--include ../makefile.defs
+CFLAGS += -I../.. \
+    -I. \
+    $(addprefix @,$(SYSCFG_OPT_FILES)) \
+    -Oz \
+    -munaligned-access \
+    -fshort-enums \
+    -fcommon \
+    -funsigned-char \
+    -mlittle-endian \
+    -fdiagnostics-show-option \
+    -ffunction-sections \
+    -g \
+    -fno-strict-aliasing \
+    -flto \
+    -DCOAP_SERVICE_ENABLE \
+    -DxCOAP_PANID_LIST \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/low_level/cc13xx/combo" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/ti-rf-driver/ti-rf-driver" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/apps/udp_nanostack_mesh_tirf" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/apps/common/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/common/nv" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_config/ws_router" \
+    -include mbed_config.h \
+    @../application/defines/router.opts \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/ti-rf-driver/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/mbedtls/mbed-crypto" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/mbed-client-libservice" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/mbed-client-libservice/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-client-randlib/mbed-client-randlib/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-client-randlib/mbed-client-randlib" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-client-randlib" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-trace" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap/source/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/nanostack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/serial" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Core/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/nanostack-event-loop" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/nanostack-event-loop/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/nanostack-hal-mbed-cmsis-rtos" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/source/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/mbed-mesh-api" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/coap-service" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/source/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/COMPONENT_NSPE" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/shell" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/config" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/conf" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/pltfrm/sysbios" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/net" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/services" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/assert" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/appasrt" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/crypto" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/rf" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/high_level" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/low_level" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/osal_port" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/boards" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/util" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/stack/src" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/stack/tirtos/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/heapmgr" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/services/saddr" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/services/sdata" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/fh" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/rom" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/inc/cc13xx" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/low_level/cc13xx" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/tracer" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Thread" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libDHCPv6" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols" \
+    -DEXCLUDE_TRACE \
+    -DxSWITCH_NCP_TO_TRACE \
+    -DTLS_SEC_PROT_LIB_USE_MBEDTLS_PLATFORM_MEMORY \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/posix/ticlang" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/config" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/utils" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/platforms" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/ncp_ftd" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/ncp_ftd/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/thread" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/ncp" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/ncp_ftd/platform/nv" \
+    -DxWISUN_AUTO_START \
+    -DTI_WISUN_FAN_DEBUG \
+    -DBoard_EXCLUDE_NVS_EXTERNAL_FLASH \
+    -DDeviceFamily_CC13X2X7 \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/devices/cc13x2x7_cc26x2x7" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/devices/cc13x2x7_cc26x2x7/driverlib" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/devices/cc13x2x7_cc26x2x7/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/kernel/tirtos7/packages" \
+    -gdwarf-3 \
+    -mcpu=cortex-m4 \
+    -march=armv7e-m \
+    -mthumb \
+    -mfloat-abi=hard \
+    -mfpu=fpv4-sp-d16
 
-# Add inputs and outputs from these tool invocations to the build variables
-EXE_OUTPUTS += \
-wisun_iot_modem.out \
+CPPFLAGS += -I../.. \
+    -I. \
+    $(addprefix @,$(SYSCFG_OPT_FILES)) \
+    -Oz \
+    -munaligned-access \
+    -fshort-enums \
+    -fcommon \
+    -funsigned-char \
+    -mlittle-endian \
+    -fdiagnostics-show-option \
+    -ffunction-sections \
+    -g \
+    -fno-strict-aliasing \
+    -flto \
+    -DCOAP_SERVICE_ENABLE \
+    -DxCOAP_PANID_LIST \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/low_level/cc13xx/combo" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/ti-rf-driver/ti-rf-driver" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/apps/udp_nanostack_mesh_tirf" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/apps/common/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/common/nv" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_config/ws_router" \
+    -include mbed_config.h \
+    @../application/defines/router.opts \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/ti-rf-driver/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/mbedtls/mbed-crypto" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/mbed-client-libservice" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/mbed-client-libservice/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-client-randlib/mbed-client-randlib/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-client-randlib/mbed-client-randlib" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-client-randlib" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-trace" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap/source/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/nanostack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/serial" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Core/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/nanostack-event-loop" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/nanostack-event-loop/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/nanostack-hal-mbed-cmsis-rtos" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/source/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/mbed-mesh-api" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/coap-service" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/source/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/COMPONENT_NSPE" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/shell" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/config" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/conf" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/pltfrm/sysbios" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/uip/net" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/services" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/assert" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/appasrt" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/crypto" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/hal/rf" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/high_level" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/low_level" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/osal_port" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/boards" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/util" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/stack/src" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/stack/tirtos/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/heapmgr" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/services/saddr" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/services/sdata" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/fh" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/rom" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/inc/cc13xx" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/low_level/cc13xx" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/tracer" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Thread" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libDHCPv6" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols" \
+    -DEXCLUDE_TRACE \
+    -DxSWITCH_NCP_TO_TRACE \
+    -DTLS_SEC_PROT_LIB_USE_MBEDTLS_PLATFORM_MEMORY \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/posix/ticlang" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/config" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/include" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/utils" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/platforms" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/ncp_ftd" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/ncp_ftd/platform" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/thread" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/ncp" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/ncp_ftd/platform/nv" \
+    -DxWISUN_AUTO_START \
+    -DTI_WISUN_FAN_DEBUG \
+    -DBoard_EXCLUDE_NVS_EXTERNAL_FLASH \
+    -DDeviceFamily_CC13X2X7 \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/devices/cc13x2x7_cc26x2x7" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/devices/cc13x2x7_cc26x2x7/driverlib" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/devices/cc13x2x7_cc26x2x7/inc" \
+    "-I$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/kernel/tirtos7/packages" \
+    -gdwarf-3 \
+    -mcpu=cortex-m4 \
+    -march=armv7e-m \
+    -mthumb \
+    -mfloat-abi=hard \
+    -mfpu=fpv4-sp-d16
 
-EXE_OUTPUTS__QUOTED += \
-"wisun_iot_modem.out" \
+LFLAGS += "-L$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source" \
+    "-L$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/kernel" \
+    "-L$(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/kernel/tirtos7/packages" \
+    -Wl,--define=TIRTOS7 \
+    -Wl,--unused_section_elimination=on \
+    -Wl,--diag_wrap=off \
+    "-Wl,--xml_link_info=$(NAME)_linkInfo.xml" \
+    ti_utils_build_linker.cmd.genlibs \
+    ../Release/cc13x2x7_cc26x2x7.cmd \
+    "-Wl,-m,$(NAME).map" \
+    -Wl,--rom_model \
+    -Wl,--warn_sections \
+    "-L$(TICLANG_ARMCOMPILER)/lib" \
+    -llibc.a
 
-# Sysconfig targets
-sysconfig-%: ../wisun_%.syscfg
-	@echo 'Building file XXX: "$<"'
-	@echo 'Invoking: SysConfig'
-	"$(CG_SYSCONFIG_FOLDER)/sysconfig_cli.sh" -s "$(CG_DRIVER_LIB)/.metadata/product.json" --script $< -o "syscfg" --compiler ticlang
-	@echo 'Finished building: "$<"'
-	@echo ' '
+# Note, the config-specific postbuild goal is defined in each {config}.mak file,
+# which was included above based on the value of the CONFIG variable.
+all: postbuild
 
-# Tool invocations
-wisun_iot_modem.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@echo 'Building target: "$@"'
-	@echo 'Invoking: Arm Linker'
-	"$(CG_TOOL_ROOT)/bin/tiarmclang" @"$(CG_PROJECT_FOLDER)/application/defines/router.opts" @"$(CG_PROJECT_FOLDER)/Release/syscfg/ti_wisunfan_config.opts"  -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mlittle-endian -mthumb -Oz -DCOAP_SERVICE_ENABLE -DxCOAP_PANID_LIST -DEXCLUDE_TRACE -DxSWITCH_NCP_TO_TRACE -DTLS_SEC_PROT_LIB_USE_MBEDTLS_PLATFORM_MEMORY -DxWISUN_AUTO_START -DTI_WISUN_FAN_DEBUG -DBoard_EXCLUDE_NVS_EXTERNAL_FLASH -DDeviceFamily_CC13X2X7 -gdwarf-3 -fdiagnostics-show-option -fshort-enums -munaligned-access -funsigned-char -fcommon -ffunction-sections -fno-strict-aliasing -include mbed_config.h -march=armv7e-m -Wl,-m"wisun_iot_modem.map" -Wl,-i"$(CG_DRIVER_LIB)/source" -Wl,-i"$(CG_DRIVER_LIB)/kernel" -Wl,-i"$(CG_DRIVER_LIB)/kernel/tirtos7/packages" -Wl,-i"$(CG_DRIVER_LIB)/Release/syscfg" -Wl,-i"$(CG_DRIVER_LIB)/lib" -Wl,--reread_libs -Wl,--define=TIRTOS7 -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="wisun_iot_modem_linkInfo.xml" -Wl,--rom_model -Wl,--unused_section_elimination=on -o "wisun_iot_modem.out" $(ORDERED_OBJS)
-	@echo 'Finished building target: "$@"'
-	@echo ' '
-	@$(MAKE) --no-print-directory post-build
+.INTERMEDIATE: syscfg
+$(SYSCFG_FILES): syscfg
+	@ echo generation complete
 
-# Other Targets
+syscfg: ../ti_wisunfan_coap_node.syscfg
+	@ echo Generating configuration files...
+	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
+
+define C_RULE
+$(basename $(notdir $(1))).obj: $(1) $(SYSCFG_H_FILES)
+	@ echo Building $$@
+	@ $(CC) $(CFLAGS) -c $$< -o $$@
+endef
+
+$(foreach c_file,$(SYSCFG_C_FILES),$(eval $(call C_RULE,$(c_file))))
+
+antenna_switching.obj: ../application/antenna_switching.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+application.obj: ../application/application.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+cat.obj: ../application/cat.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+flash_interface_ext_rtos_NVS.obj: ../application/flash_interface_ext_rtos_NVS.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+main.obj: ../application/main.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+oad.obj: ../application/oad.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+oad_storage.obj: ../application/oad_storage.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_ti-rf-driver_source_RFQueue.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/ti-rf-driver/source/RFQueue.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_ti-nv-driver_crc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/common/nv/crc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_ti-nv-driver_nvocmp.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/common/nv/nvocmp.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_mbed-coap_source_sn_coap_builder.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap/source/sn_coap_builder.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_mbed-coap_source_sn_coap_header_check.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap/source/sn_coap_header_check.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_mbed-coap_source_sn_coap_parser.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap/source/sn_coap_parser.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_mbed-coap_source_sn_coap_protocol.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-coap/source/sn_coap_protocol.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_coap-service_source_coap_connection_handler.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/source/coap_connection_handler.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_coap-service_source_coap_message_handler.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/source/coap_message_handler.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_coap-service_source_coap_security_handler.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/source/coap_security_handler.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_coap-service_source_coap_service_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/coap-service/source/coap_service_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_interrupt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_interrupt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_random.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_random.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_timer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_timer.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_ns_event_loop.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_ns_event_loop_mutex.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop_mutex.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_ns_hal_init.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_hal_init.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_nanostack_nanostack-hal-mbed-cmsis-rtos_arm_hal_fhss_timer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_fhss_timer.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbednanostack2tirtos_platform_ns_trace.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbednanostack2tirtos/platform/ns_trace.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_mac_settings_mac_cfg.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/high_level/mac_cfg.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_mac_settings_mac_settings.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/low_level/cc13xx/mac_settings.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_radio_configuration_mac_user_config.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/boards/mac_user_config.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_macTask.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/osal_port/macTask.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_stack_user_api_api_mac_api_mac.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/osal_port/api_mac.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_stack_user_api_api_mac_timac_fhss_config.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/osal_port/timac_fhss_config.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_osal_port_osal_port.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/osal_port/osal_port_tirtos/osal_port.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+software_stack_ti15_4mac_osal_port_osal_port_timers.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/wisunfan_mac/common/osal_port/osal_port_tirtos/osal_port_timers.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_mbed-mesh-api_source_wisun_tasklet.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/source/wisun_tasklet.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_platform_mbed_trng_alt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/platform/mbed_trng_alt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_mbedtls_mbed-crypto_platform_util.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/platform_util.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_mbedtls_mbed-crypto_threading.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/threading.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_mbedtls_mbed-crypto_crypto_device_platform.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/mbedtls/mbed-crypto/src/crypto_device_platform.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_mbedtls_mbed-crypto_aes_alt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/mbedtls/mbed-crypto/src/aes_alt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_mbedtls_mbed-crypto_crypto_misc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/mbedtls/mbed-crypto/src/crypto_misc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_mbedtls_mbed-crypto_ecjpake_alt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/mbedtls/mbed-crypto/src/ecjpake_alt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls2tirtos_mbedtls_mbed-crypto_sha256_alt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/mbed_port/mbedtls2tirtos/mbedtls/mbed-crypto/src/sha256_alt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+application_shell_ns_cmdline.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/shell/ns_cmdline.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_mbed-client-randlib_source_randLIB.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-client-randlib/source/randLIB.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_nanostack-libservice_source_IPv6_fcf_lib_ip_fsc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/source/IPv6_fcf_lib/ip_fsc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_nanostack-libservice_source_libBits_common_functions.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/source/libBits/common_functions.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_nanostack-libservice_source_libList_ns_list.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/source/libList/ns_list.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_nanostack-libservice_source_libip6string_ip6tos.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/source/libip6string/ip6tos.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_nanostack-libservice_source_libip6string_stoip6.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/source/libip6string/stoip6.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_nanostack-libservice_source_nsdynmemLIB_nsdynmemLIB.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/source/nsdynmemLIB/nsdynmemLIB.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto_se.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_se.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto_slot_management.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_slot_management.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_crypto_storage.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_storage.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_platform_COMPONENT_PSA_SRV_IMPL_psa_its_file.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_its_file.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_aes.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/aes.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_aesni.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/aesni.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_arc4.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/arc4.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_aria.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/aria.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_asn1parse.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/asn1parse.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_asn1write.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/asn1write.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_base64.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/base64.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_bignum.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/bignum.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_blowfish.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/blowfish.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_camellia.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/camellia.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ccm.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ccm.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_chacha20.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/chacha20.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_chachapoly.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/chachapoly.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_cipher.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/cipher.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_cipher_wrap.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/cipher_wrap.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_cmac.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/cmac.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ctr_drbg.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ctr_drbg.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_des.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/des.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_dhm.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/dhm.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ecdh.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ecdh.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ecdsa.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ecdsa.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ecjpake.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ecjpake.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ecp.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ecp.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ecp_curves.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ecp_curves.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_entropy.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/entropy.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_entropy_poll.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/entropy_poll.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_gcm.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/gcm.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_havege.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/havege.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_hkdf.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/hkdf.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_hmac_drbg.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/hmac_drbg.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_md.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/md.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_md2.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/md2.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_md4.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/md4.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_md5.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/md5.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_memory_buffer_alloc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/memory_buffer_alloc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_nist_kw.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/nist_kw.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_oid.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/oid.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_padlock.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/padlock.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pem.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pem.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pk.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pk.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pk_wrap.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pk_wrap.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pkcs12.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pkcs12.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pkcs5.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pkcs5.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pkparse.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pkparse.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pkwrite.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pkwrite.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_platform.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/platform.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_poly1305.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/poly1305.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ripemd160.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ripemd160.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_rsa.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/rsa.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_rsa_internal.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/rsa_internal.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_sha1.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/sha1.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_sha256.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/sha256.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_sha512.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/sha512.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_timing.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/timing.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_xtea.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/xtea.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_certs.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/certs.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_debug.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/debug.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_error.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/error.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_pkcs11.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/pkcs11.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_cache.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_cache.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_ciphersuites.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_ciphersuites.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_cli.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_cli.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_cookie.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_cookie.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_srv.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_srv.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_msg.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_msg.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_ticket.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_ticket.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_ssl_tls.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/ssl_tls.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_version.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/version.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_version_features.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/version_features.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_x509.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/x509.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_x509_create.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/x509_create.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_x509_crl.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/x509_crl.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_x509_crt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/x509_crt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_x509_csr.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/x509_csr.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_x509write_crt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/x509write_crt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbedtls_src_x509write_csr.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/ti_wisunfan/mbedtls/src/x509write_csr.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_mbed-mesh-api_source_ethernet_tasklet.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/source/ethernet_tasklet.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_mbed-mesh-api_source_mesh_system.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/mbed-mesh-api/source/mesh_system.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_network_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/network_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_protocol_6lowpan.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_protocol_6lowpan_bootstrap.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_bootstrap.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Bootstraps_Generic_protocol_6lowpan_interface.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_interface.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Fragmentation_cipv6_fragmenter.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Fragmentation/cipv6_fragmenter.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_6lowpan_iphc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/6lowpan_iphc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_iphc_compress.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_compress.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_iphc_decompress.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_decompress.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_IPHC_Decode_lowpan_context.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/lowpan_context.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_beacon_handler.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/beacon_handler.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_data_poll.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_data_poll.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_helper.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_helper.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_ie_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_ie_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_MAC_mac_pairwise_key.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_pairwise_key.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_Mesh_mesh.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Mesh/mesh.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ND_nd_router_object.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ND/nd_router_object.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_NVM_nwk_nvm.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/NVM/nwk_nvm.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_adaptation_interface.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/adaptation_interface.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_cfg_settings.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_cfg_settings.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_bootstrap.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_bootstrap.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_common.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_common.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_auth_relay.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_auth_relay.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_pdu.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_pdu.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_relay.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_eapol_relay_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_empty_functions.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_empty_functions.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_ie_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_ie_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_llc_data_service.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_llc_data_service.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_management_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_management_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_mpx_header.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_mpx_header.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_neighbor_class.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_neighbor_class.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_key_storage.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_key_storage.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_time.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_time.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_auth.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_auth.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_controller.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_controller.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_nvm_data.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_data.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_nvm_store.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_store.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_supp.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_supp.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_pae_timers.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_timers.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_stats.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_stats.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_6LoWPAN_ws_ws_test_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_test_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_BorderRouter_border_router.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/BorderRouter/border_router.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_icmpv6.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_icmpv6_prefix.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_prefix.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_icmpv6_radv.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_radv.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6_flow.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_flow.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6_fragmentation.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_fragmentation.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_ipv6_resolution.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_resolution.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_mld.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/mld.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_tcp.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/tcp.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Common_Protocols_udp.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/udp.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Core_buffer_dyn.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Core/buffer_dyn.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Core_ns_address_internal.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Core/ns_address_internal.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Core_ns_monitor.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Core/ns_monitor.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Core_ns_socket.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Core/ns_socket.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Core_sockbuf.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Core/sockbuf.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_DHCPv6_Server_DHCPv6_Server_service.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/DHCPv6_Server/DHCPv6_Server_service.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_DHCPv6_client_dhcpv6_client_service.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client/dhcpv6_client_service.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_MAC_rf_driver_storage.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/MAC/rf_driver_storage.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_MLE_mle.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/MLE/mle.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_MLE_mle_tlv.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/MLE/mle_tlv.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_MPL_mpl.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/MPL/mpl.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_core.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_core_sleep.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core_sleep.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_stats.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_stats.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_NWK_INTERFACE_protocol_timer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_timer.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_control.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_control.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_data.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_data.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_downward.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_downward.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_mrhof.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_mrhof.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_objective.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_objective.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_of0.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_of0.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_policy.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_policy.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_RPL_rpl_upward.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_upward.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_Common_security_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/Common/security_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_eap_protocol.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/eap_protocol.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_avp.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_avp.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_client.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_client.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_eap_header.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_eap_header.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_header.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_header.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_relay_table.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_relay_table.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_PANA_pana_server.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_server.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_TLS_tls_ccm_crypt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_ccm_crypt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_TLS_tls_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_eapol_eapol_helper.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/eapol/eapol_helper.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_eapol_kde_helper.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/eapol/kde_helper.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_addr.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_addr.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_eapol_pdu_if.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_eapol_pdu_if.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_kmp_kmp_socket_if.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_socket_if.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_radius_sec_prot_avp_helper.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/avp_helper.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_radius_sec_prot_radius_client_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/radius_client_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_radius_eap_tls_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/radius_eap_tls_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_auth_eap_tls_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/auth_eap_tls_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_eap_tls_sec_prot_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/eap_tls_sec_prot_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_eap_tls_sec_prot_supp_eap_tls_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/supp_eap_tls_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_fwh_sec_prot_auth_fwh_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/auth_fwh_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_fwh_sec_prot_supp_fwh_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/supp_fwh_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_gkh_sec_prot_auth_gkh_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/auth_gkh_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_gkh_sec_prot_supp_gkh_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/supp_gkh_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_key_sec_prot_key_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/key_sec_prot/key_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_sec_prot_certs.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_certs.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_sec_prot_keys.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_keys.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_sec_prot_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_tls_sec_prot_tls_sec_prot.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Security_protocols_tls_sec_prot_tls_sec_prot_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_CCM_lib_ccm_security.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/ccm_security.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_CCM_lib_mbedOS_aes_mbedtls.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_CCM_lib_mbedOS_aes_mbedtls_adapter.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls_adapter.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_Neighbor_cache_neighbor_cache.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Neighbor_cache/neighbor_cache.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_SHA256_Lib_ns_sha256.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/ns_sha256.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_SHA256_Lib_shalib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/shalib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_Trickle_trickle.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Trickle/trickle.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_blacklist_blacklist.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/blacklist/blacklist.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_etx_etx.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/etx/etx.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_fhss_channel_list.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fhss/channel_list.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_fnv_hash_fnv_hash.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash/fnv_hash.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_hmac_hmac_md.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac/hmac_md.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_ieee_802_11_ieee_802_11.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/ieee_802_11/ieee_802_11.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_load_balance_load_balance.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance/load_balance.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mac_neighbor_table_mac_neighbor_table.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mac_neighbor_table/mac_neighbor_table.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_fnet_fnet_stack_services_mdns_fnet_mdns.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns/fnet_mdns.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_fnet_fnet_stack_services_poll_fnet_poll.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/poll/fnet_poll.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_fnet_fnet_stack_stack_fnet_stdlib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack/fnet_stdlib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_ns_fnet_events.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_events.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_ns_fnet_port.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_port.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mdns_ns_mdns_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_mdns_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_buffer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_buffer.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_frame_counter_table.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_frame_counter_table.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_interface.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_interface.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_mle_service_mle_service_security.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_security.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_nd_proxy_nd_proxy.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nd_proxy/nd_proxy.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_nist_aes_kw_nist_aes_kw.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nist_aes_kw/nist_aes_kw.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_pan_blacklist_pan_blacklist.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist/pan_blacklist.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_isqrt.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/isqrt.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_ns_conf.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_conf.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_ns_crc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_crc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_utils_ns_file_system.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_file_system.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_whiteboard_whiteboard.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard/whiteboard.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_Service_Libs_random_early_detection_random_early_detection.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/Service_Libs/random_early_detection/random_early_detection.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_frameworks_nanostack-libservice_source_nsdynmemtracker_nsdynmem_tracker_lib.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/nanostack-libservice/source/nsdynmemtracker/nsdynmem_tracker_lib.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_ipv6_stack_ipv6_routing_table.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/ipv6_routing_table.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_ipv6_stack_protocol_ipv6.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/protocol_ipv6.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_dhcp_service_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/dhcp_service_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_libDHCPv6.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_libDHCPv6_server.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_server.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libDHCPv6_libDHCPv6_vendordata.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_vendordata.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_multicast_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/multicast_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_dns.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_dns.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_6lowpan_parameter_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_6lowpan_parameter_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_ipv6.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_ipv6.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_load_balance.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_load_balance.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_mle.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_mle.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_rpl.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_rpl.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_short_address_extension.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_short_address_extension.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_net_test.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_test.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_ns_net.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/ns_net.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack_source_libNET_src_socket_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack/source/libNET/src/socket_api.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack-eventloop_source_event.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/source/event.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack-eventloop_source_ns_timeout.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timeout.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack-eventloop_source_ns_timer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timer.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_nanostack_sal-stack-nanostack-eventloop_source_system_timer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/nanostack/sal-stack-nanostack-eventloop/source/system_timer.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+mbed_mbed-trace_mbed_trace.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/third_party/mbed/frameworks/mbed-trace/source/mbed_trace.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+wisun_ncp_src_lib_spinel_spinel.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/lib/spinel/spinel.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+wisun_ncp_platform_misc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/examples/ncp_ftd/platform/misc.c $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CFLAGS) -c $< -o $@
+
+wisun_ncp_src_ncp_changed_props_set.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/ncp/changed_props_set.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_ncp_ncp_base.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/ncp/ncp_base.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_ncp_ncp_base_dispatcher.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/ncp/ncp_base_dispatcher.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_ncp_ncp_uart.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/ncp/ncp_uart.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_lib_hdlc_hdlc.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/lib/hdlc/hdlc.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_lib_spinel_spinel_buffer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/lib/spinel/spinel_buffer.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_lib_spinel_spinel_decoder.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/lib/spinel/spinel_decoder.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_lib_spinel_spinel_encoder.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/lib/spinel/spinel_encoder.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_api_message_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/api/message_api.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_api_logging_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/api/logging_api.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_api_instance_api.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/api/instance_api.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_crc16.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/crc16.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_instance.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/instance.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_logging.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/logging.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_message.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/message.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_notifier.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/notifier.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_string.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/string.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_tasklet.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/tasklet.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_timer.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/timer.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+wisun_ncp_src_core_common_tlvs.obj: $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/source/ti/ti_wisunfan/ncp_interface/src/core/common/tlvs.cpp $(SYSCFG_H_FILES)
+	@ echo Building $@
+	@ $(CC) $(CPPFLAGS) -c $< -o $@
+
+$(NAME).out: $(OBJECTS)
+	@ echo linking $@
+	@ $(LNK) -Wl,-u,_c_int00 $(OBJECTS)  $(LFLAGS) -o $(NAME).out
+
+$(NAME).hex: $(NAME).out
+	@ echo building $@
+	@ $(HEX) -O ihex $? $@
+
 clean:
-	-$(RM) $(GEN_MISC_FILES__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "syscfg/ti_devices_config.o" "syscfg/ti_radio_config.o" "syscfg/ti_drivers_config.o" "syscfg/ti_sysbios_config.o" "application/antenna_switching.o" "application/application.o" "application/cat.o" "application/main.o" "application/shell/ns_cmdline.o" "application/oad.o" "application/oad_storage.o" "application/flash_interface_ext_rtos_NVS.o" "mbed/frameworks/mbed-client-randlib/source/randLIB.o" "mbed/frameworks/mbed-coap/source/sn_coap_builder.o" "mbed/frameworks/mbed-coap/source/sn_coap_header_check.o" "mbed/frameworks/mbed-coap/source/sn_coap_parser.o" "mbed/frameworks/mbed-coap/source/sn_coap_protocol.o" "mbed/frameworks/nanostack-libservice/source/IPv6_fcf_lib/ip_fsc.o" "mbed/frameworks/nanostack-libservice/source/libBits/common_functions.o" "mbed/frameworks/nanostack-libservice/source/libList/ns_list.o" "mbed/frameworks/nanostack-libservice/source/libip6string/ip6tos.o" "mbed/frameworks/nanostack-libservice/source/libip6string/stoip6.o" "mbed/frameworks/nanostack-libservice/source/nsdynmemLIB/nsdynmemLIB.o" "mbed/frameworks/nanostack-libservice/source/nsdynmemtracker/nsdynmem_tracker_lib.o" "mbed/mbed-trace/mbed_trace.o" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_fhss_timer.o"
-	-$(RM) "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_interrupt.o" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_random.o" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_timer.o" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop.o" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop_mutex.o" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_hal_init.o" "mbed/mbednanostack2tirtos/platform/ns_trace.o" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto.o" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_se.o" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_slot_management.o" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_storage.o" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_its_file.o" "mbed/mbedtls/src/aes.o" "mbed/mbedtls/src/aesni.o" "mbed/mbedtls/src/arc4.o" "mbed/mbedtls/src/aria.o" "mbed/mbedtls/src/asn1parse.o"
-	-$(RM) "mbed/mbedtls/src/asn1write.o" "mbed/mbedtls/src/base64.o" "mbed/mbedtls/src/bignum.o" "mbed/mbedtls/src/blowfish.o" "mbed/mbedtls/src/camellia.o" "mbed/mbedtls/src/ccm.o" "mbed/mbedtls/src/certs.o" "mbed/mbedtls/src/chacha20.o" "mbed/mbedtls/src/chachapoly.o" "mbed/mbedtls/src/cipher.o" "mbed/mbedtls/src/cipher_wrap.o" "mbed/mbedtls/src/cmac.o" "mbed/mbedtls/src/ctr_drbg.o" "mbed/mbedtls/src/debug.o" "mbed/mbedtls/src/des.o" "mbed/mbedtls/src/dhm.o" "mbed/mbedtls/src/ecdh.o" "mbed/mbedtls/src/ecdsa.o" "mbed/mbedtls/src/ecjpake.o" "mbed/mbedtls/src/ecp.o" "mbed/mbedtls/src/ecp_curves.o" "mbed/mbedtls/src/entropy.o" "mbed/mbedtls/src/entropy_poll.o" "mbed/mbedtls/src/error.o" "mbed/mbedtls/src/gcm.o" "mbed/mbedtls/src/havege.o" "mbed/mbedtls/src/hkdf.o" "mbed/mbedtls/src/hmac_drbg.o" "mbed/mbedtls/src/md.o" "mbed/mbedtls/src/md2.o" "mbed/mbedtls/src/md4.o" "mbed/mbedtls/src/md5.o" "mbed/mbedtls/src/memory_buffer_alloc.o" "mbed/mbedtls/src/nist_kw.o" "mbed/mbedtls/src/oid.o" "mbed/mbedtls/src/padlock.o"
-	-$(RM) "mbed/mbedtls/src/pem.o" "mbed/mbedtls/src/pk.o" "mbed/mbedtls/src/pk_wrap.o" "mbed/mbedtls/src/pkcs11.o" "mbed/mbedtls/src/pkcs12.o" "mbed/mbedtls/src/pkcs5.o" "mbed/mbedtls/src/pkparse.o" "mbed/mbedtls/src/pkwrite.o" "mbed/mbedtls/src/platform.o" "mbed/mbedtls/src/poly1305.o" "mbed/mbedtls/src/ripemd160.o" "mbed/mbedtls/src/rsa.o" "mbed/mbedtls/src/rsa_internal.o" "mbed/mbedtls/src/sha1.o" "mbed/mbedtls/src/sha256.o" "mbed/mbedtls/src/sha512.o" "mbed/mbedtls/src/ssl_cache.o" "mbed/mbedtls/src/ssl_ciphersuites.o" "mbed/mbedtls/src/ssl_cli.o" "mbed/mbedtls/src/ssl_cookie.o" "mbed/mbedtls/src/ssl_msg.o" "mbed/mbedtls/src/ssl_srv.o" "mbed/mbedtls/src/ssl_ticket.o" "mbed/mbedtls/src/ssl_tls.o" "mbed/mbedtls/src/timing.o" "mbed/mbedtls/src/version.o" "mbed/mbedtls/src/version_features.o" "mbed/mbedtls/src/x509.o" "mbed/mbedtls/src/x509_create.o" "mbed/mbedtls/src/x509_crl.o" "mbed/mbedtls/src/x509_crt.o" "mbed/mbedtls/src/x509_csr.o" "mbed/mbedtls/src/x509write_crt.o" "mbed/mbedtls/src/x509write_csr.o"
-	-$(RM) "mbed/mbedtls/src/xtea.o" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/aes_alt.o" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/crypto_device_platform.o" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/crypto_misc.o" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/ecjpake_alt.o" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/platform_util.o" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/sha256_alt.o" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/threading.o" "mbed/mbedtls2tirtos/platform/mbed_trng_alt.o" "mbed/nanostack/coap-service/source/coap_connection_handler.o" "mbed/nanostack/coap-service/source/coap_message_handler.o" "mbed/nanostack/coap-service/source/coap_security_handler.o" "mbed/nanostack/coap-service/source/coap_service_api.o" "mbed/nanostack/mbed-mesh-api/source/ethernet_tasklet.o" "mbed/nanostack/mbed-mesh-api/source/mesh_system.o" "mbed/nanostack/mbed-mesh-api/source/wisun_tasklet.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/network_lib.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_bootstrap.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_interface.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Fragmentation/cipv6_fragmenter.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/6lowpan_iphc.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_compress.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_decompress.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/lowpan_context.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/beacon_handler.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_data_poll.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_helper.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_ie_lib.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_pairwise_key.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Mesh/mesh.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ND/nd_router_object.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/NVM/nwk_nvm.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/adaptation_interface.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_bootstrap.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_cfg_settings.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_common.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_auth_relay.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_pdu.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay_lib.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_empty_functions.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_ie_lib.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_llc_data_service.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_management_api.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_mpx_header.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_neighbor_class.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_auth.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_controller.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_key_storage.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_lib.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_data.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_store.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_supp.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_time.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_timers.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_stats.o" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_test_api.o" "mbed/nanostack/sal-stack-nanostack/source/BorderRouter/border_router.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_prefix.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_radv.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_flow.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_fragmentation.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_resolution.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/mld.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/tcp.o" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/udp.o" "mbed/nanostack/sal-stack-nanostack/source/Core/buffer_dyn.o" "mbed/nanostack/sal-stack-nanostack/source/Core/ns_address_internal.o" "mbed/nanostack/sal-stack-nanostack/source/Core/ns_monitor.o" "mbed/nanostack/sal-stack-nanostack/source/Core/ns_socket.o" "mbed/nanostack/sal-stack-nanostack/source/Core/sockbuf.o" "mbed/nanostack/sal-stack-nanostack/source/DHCPv6_Server/DHCPv6_Server_service.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client/dhcpv6_client_service.o" "mbed/nanostack/sal-stack-nanostack/source/MAC/rf_driver_storage.o" "mbed/nanostack/sal-stack-nanostack/source/MLE/mle.o" "mbed/nanostack/sal-stack-nanostack/source/MLE/mle_tlv.o" "mbed/nanostack/sal-stack-nanostack/source/MPL/mpl.o" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core.o" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core_sleep.o" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_stats.o" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_timer.o" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_control.o" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_data.o" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_downward.o" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_mrhof.o" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_objective.o" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_of0.o" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_policy.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_upward.o" "mbed/nanostack/sal-stack-nanostack/source/Security/Common/security_lib.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/eap_protocol.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_avp.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_client.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_eap_header.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_header.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_relay_table.o" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_server.o" "mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_ccm_crypt.o" "mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_lib.o" "mbed/nanostack/sal-stack-nanostack/source/Security/eapol/eapol_helper.o" "mbed/nanostack/sal-stack-nanostack/source/Security/eapol/kde_helper.o" "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_addr.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_api.o" "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_eapol_pdu_if.o" "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_socket_if.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/auth_eap_tls_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/eap_tls_sec_prot_lib.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/radius_eap_tls_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/supp_eap_tls_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/auth_fwh_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/supp_fwh_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/auth_gkh_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/supp_gkh_sec_prot.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/key_sec_prot/key_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/avp_helper.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/radius_client_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_certs.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_keys.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_lib.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot.o" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot_lib.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/ccm_security.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls_adapter.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Neighbor_cache/neighbor_cache.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/ns_sha256.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/shalib.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Trickle/trickle.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/blacklist/blacklist.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/etx/etx.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fhss/channel_list.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash/fnv_hash.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac/hmac_md.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/ieee_802_11/ieee_802_11.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance/load_balance.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mac_neighbor_table/mac_neighbor_table.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns/fnet_mdns.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/poll/fnet_poll.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack/fnet_stdlib.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_events.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_port.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_mdns_api.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_buffer.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_frame_counter_table.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_interface.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_security.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nd_proxy/nd_proxy.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nist_aes_kw/nist_aes_kw.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist/pan_blacklist.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/random_early_detection/random_early_detection.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/isqrt.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_conf.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_crc.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_file_system.o" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard/whiteboard.o" "mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/ipv6_routing_table.o" "mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/protocol_ipv6.o" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/dhcp_service_api.o" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6.o" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_server.o" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_vendordata.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/multicast_api.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_6lowpan_parameter_api.o"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_dns.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_ipv6.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_load_balance.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_mle.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_rpl.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_short_address_extension.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_test.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/ns_net.o" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/socket_api.o" "mbed/nanostack/sal-stack-nanostack-eventloop/source/event.o" "mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timeout.o" "mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timer.o" "mbed/nanostack/sal-stack-nanostack-eventloop/source/system_timer.o" "mbed/ti-nv-driver/crc.o" "mbed/ti-nv-driver/nvocmp.o" "mbed/ti-rf-driver/source/RFQueue.o" "software_stack/ti15_4mac/macTask.o"
-	-$(RM) "software_stack/ti15_4mac/mac_settings/mac_cfg.o" "software_stack/ti15_4mac/mac_settings/mac_settings.o" "software_stack/ti15_4mac/osal_port/osal_port.o" "software_stack/ti15_4mac/osal_port/osal_port_timers.o" "software_stack/ti15_4mac/radio_configuration/mac_user_config.o" "software_stack/ti15_4mac/stack_user_api/api_mac/api_mac.o" "software_stack/ti15_4mac/stack_user_api/api_mac/timac_fhss_config.o" "wisun_ncp/platform/misc.o" "wisun_ncp/src/core/api/instance_api.o" "wisun_ncp/src/core/api/logging_api.o" "wisun_ncp/src/core/api/message_api.o" "wisun_ncp/src/core/common/crc16.o" "wisun_ncp/src/core/common/instance.o" "wisun_ncp/src/core/common/logging.o" "wisun_ncp/src/core/common/message.o" "wisun_ncp/src/core/common/notifier.o" "wisun_ncp/src/core/common/string.o" "wisun_ncp/src/core/common/tasklet.o" "wisun_ncp/src/core/common/timer.o" "wisun_ncp/src/core/common/tlvs.o" "wisun_ncp/src/lib/hdlc/hdlc.o" "wisun_ncp/src/lib/spinel/spinel.o" "wisun_ncp/src/lib/spinel/spinel_buffer.o" "wisun_ncp/src/lib/spinel/spinel_decoder.o"
-	-$(RM) "wisun_ncp/src/lib/spinel/spinel_encoder.o" "wisun_ncp/src/ncp/changed_props_set.o" "wisun_ncp/src/ncp/ncp_base.o" "wisun_ncp/src/ncp/ncp_base_dispatcher.o" "wisun_ncp/src/ncp/ncp_uart.o"
-	-$(RM) "syscfg/ti_devices_config.d" "syscfg/ti_radio_config.d" "syscfg/ti_drivers_config.d" "syscfg/ti_sysbios_config.d" "application/application.d" "application/main.d" "application/shell/ns_cmdline.d" "mbed/frameworks/mbed-client-randlib/source/randLIB.d" "mbed/frameworks/mbed-coap/source/sn_coap_builder.d" "mbed/frameworks/mbed-coap/source/sn_coap_header_check.d" "mbed/frameworks/mbed-coap/source/sn_coap_parser.d" "mbed/frameworks/mbed-coap/source/sn_coap_protocol.d" "mbed/frameworks/nanostack-libservice/source/IPv6_fcf_lib/ip_fsc.d" "mbed/frameworks/nanostack-libservice/source/libBits/common_functions.d" "mbed/frameworks/nanostack-libservice/source/libList/ns_list.d" "mbed/frameworks/nanostack-libservice/source/libip6string/ip6tos.d" "mbed/frameworks/nanostack-libservice/source/libip6string/stoip6.d" "mbed/frameworks/nanostack-libservice/source/nsdynmemLIB/nsdynmemLIB.d" "mbed/frameworks/nanostack-libservice/source/nsdynmemtracker/nsdynmem_tracker_lib.d" "mbed/mbed-trace/mbed_trace.d" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_fhss_timer.d"
-	-$(RM) "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_interrupt.d" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_random.d" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/arm_hal_timer.d" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop.d" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_event_loop_mutex.d" "mbed/mbednanostack2tirtos/nanostack/nanostack-hal-mbed-cmsis-rtos/ns_hal_init.d" "mbed/mbednanostack2tirtos/platform/ns_trace.d" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto.d" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_se.d" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_slot_management.d" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_crypto_storage.d" "mbed/mbedtls/platform/COMPONENT_PSA_SRV_IMPL/psa_its_file.d" "mbed/mbedtls/src/aes.d" "mbed/mbedtls/src/aesni.d" "mbed/mbedtls/src/arc4.d" "mbed/mbedtls/src/aria.d" "mbed/mbedtls/src/asn1parse.d"
-	-$(RM) "mbed/mbedtls/src/asn1write.d" "mbed/mbedtls/src/base64.d" "mbed/mbedtls/src/bignum.d" "mbed/mbedtls/src/blowfish.d" "mbed/mbedtls/src/camellia.d" "mbed/mbedtls/src/ccm.d" "mbed/mbedtls/src/certs.d" "mbed/mbedtls/src/chacha20.d" "mbed/mbedtls/src/chachapoly.d" "mbed/mbedtls/src/cipher.d" "mbed/mbedtls/src/cipher_wrap.d" "mbed/mbedtls/src/cmac.d" "mbed/mbedtls/src/ctr_drbg.d" "mbed/mbedtls/src/debug.d" "mbed/mbedtls/src/des.d" "mbed/mbedtls/src/dhm.d" "mbed/mbedtls/src/ecdh.d" "mbed/mbedtls/src/ecdsa.d" "mbed/mbedtls/src/ecjpake.d" "mbed/mbedtls/src/ecp.d" "mbed/mbedtls/src/ecp_curves.d" "mbed/mbedtls/src/entropy.d" "mbed/mbedtls/src/entropy_poll.d" "mbed/mbedtls/src/error.d" "mbed/mbedtls/src/gcm.d" "mbed/mbedtls/src/havege.d" "mbed/mbedtls/src/hkdf.d" "mbed/mbedtls/src/hmac_drbg.d" "mbed/mbedtls/src/md.d" "mbed/mbedtls/src/md2.d" "mbed/mbedtls/src/md4.d" "mbed/mbedtls/src/md5.d" "mbed/mbedtls/src/memory_buffer_alloc.d" "mbed/mbedtls/src/nist_kw.d" "mbed/mbedtls/src/oid.d" "mbed/mbedtls/src/padlock.d"
-	-$(RM) "mbed/mbedtls/src/pem.d" "mbed/mbedtls/src/pk.d" "mbed/mbedtls/src/pk_wrap.d" "mbed/mbedtls/src/pkcs11.d" "mbed/mbedtls/src/pkcs12.d" "mbed/mbedtls/src/pkcs5.d" "mbed/mbedtls/src/pkparse.d" "mbed/mbedtls/src/pkwrite.d" "mbed/mbedtls/src/platform.d" "mbed/mbedtls/src/poly1305.d" "mbed/mbedtls/src/ripemd160.d" "mbed/mbedtls/src/rsa.d" "mbed/mbedtls/src/rsa_internal.d" "mbed/mbedtls/src/sha1.d" "mbed/mbedtls/src/sha256.d" "mbed/mbedtls/src/sha512.d" "mbed/mbedtls/src/ssl_cache.d" "mbed/mbedtls/src/ssl_ciphersuites.d" "mbed/mbedtls/src/ssl_cli.d" "mbed/mbedtls/src/ssl_cookie.d" "mbed/mbedtls/src/ssl_msg.d" "mbed/mbedtls/src/ssl_srv.d" "mbed/mbedtls/src/ssl_ticket.d" "mbed/mbedtls/src/ssl_tls.d" "mbed/mbedtls/src/timing.d" "mbed/mbedtls/src/version.d" "mbed/mbedtls/src/version_features.d" "mbed/mbedtls/src/x509.d" "mbed/mbedtls/src/x509_create.d" "mbed/mbedtls/src/x509_crl.d" "mbed/mbedtls/src/x509_crt.d" "mbed/mbedtls/src/x509_csr.d" "mbed/mbedtls/src/x509write_crt.d" "mbed/mbedtls/src/x509write_csr.d"
-	-$(RM) "mbed/mbedtls/src/xtea.d" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/aes_alt.d" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/crypto_device_platform.d" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/crypto_misc.d" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/ecjpake_alt.d" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/platform_util.d" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/sha256_alt.d" "mbed/mbedtls2tirtos/mbedtls/mbed-crypto/threading.d" "mbed/mbedtls2tirtos/platform/mbed_trng_alt.d" "mbed/nanostack/coap-service/source/coap_connection_handler.d" "mbed/nanostack/coap-service/source/coap_message_handler.d" "mbed/nanostack/coap-service/source/coap_security_handler.d" "mbed/nanostack/coap-service/source/coap_service_api.d" "mbed/nanostack/mbed-mesh-api/source/ethernet_tasklet.d" "mbed/nanostack/mbed-mesh-api/source/mesh_system.d" "mbed/nanostack/mbed-mesh-api/source/wisun_tasklet.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/network_lib.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_bootstrap.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Bootstraps/Generic/protocol_6lowpan_interface.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Fragmentation/cipv6_fragmenter.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/6lowpan_iphc.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_compress.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/iphc_decompress.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/IPHC_Decode/lowpan_context.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/beacon_handler.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_data_poll.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_helper.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_ie_lib.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/MAC/mac_pairwise_key.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/Mesh/mesh.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ND/nd_router_object.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/NVM/nwk_nvm.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/adaptation_interface.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_bootstrap.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_cfg_settings.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_common.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_auth_relay.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_pdu.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_eapol_relay_lib.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_empty_functions.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_ie_lib.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_llc_data_service.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_management_api.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_mpx_header.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_neighbor_class.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_auth.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_controller.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_key_storage.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_lib.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_data.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_nvm_store.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_supp.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_time.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_pae_timers.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_stats.d" "mbed/nanostack/sal-stack-nanostack/source/6LoWPAN/ws/ws_test_api.d" "mbed/nanostack/sal-stack-nanostack/source/BorderRouter/border_router.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_prefix.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/icmpv6_radv.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_flow.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_fragmentation.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/ipv6_resolution.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/mld.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/tcp.d" "mbed/nanostack/sal-stack-nanostack/source/Common_Protocols/udp.d" "mbed/nanostack/sal-stack-nanostack/source/Core/buffer_dyn.d" "mbed/nanostack/sal-stack-nanostack/source/Core/ns_address_internal.d" "mbed/nanostack/sal-stack-nanostack/source/Core/ns_monitor.d" "mbed/nanostack/sal-stack-nanostack/source/Core/ns_socket.d" "mbed/nanostack/sal-stack-nanostack/source/Core/sockbuf.d" "mbed/nanostack/sal-stack-nanostack/source/DHCPv6_Server/DHCPv6_Server_service.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/DHCPv6_client/dhcpv6_client_service.d" "mbed/nanostack/sal-stack-nanostack/source/MAC/rf_driver_storage.d" "mbed/nanostack/sal-stack-nanostack/source/MLE/mle.d" "mbed/nanostack/sal-stack-nanostack/source/MLE/mle_tlv.d" "mbed/nanostack/sal-stack-nanostack/source/MPL/mpl.d" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core.d" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_core_sleep.d" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_stats.d" "mbed/nanostack/sal-stack-nanostack/source/NWK_INTERFACE/protocol_timer.d" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_control.d" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_data.d" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_downward.d" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_mrhof.d" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_objective.d" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_of0.d" "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_policy.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/RPL/rpl_upward.d" "mbed/nanostack/sal-stack-nanostack/source/Security/Common/security_lib.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/eap_protocol.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_avp.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_client.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_eap_header.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_header.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_relay_table.d" "mbed/nanostack/sal-stack-nanostack/source/Security/PANA/pana_server.d" "mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_ccm_crypt.d" "mbed/nanostack/sal-stack-nanostack/source/Security/TLS/tls_lib.d" "mbed/nanostack/sal-stack-nanostack/source/Security/eapol/eapol_helper.d" "mbed/nanostack/sal-stack-nanostack/source/Security/eapol/kde_helper.d" "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_addr.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_api.d" "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_eapol_pdu_if.d" "mbed/nanostack/sal-stack-nanostack/source/Security/kmp/kmp_socket_if.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/auth_eap_tls_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/eap_tls_sec_prot_lib.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/radius_eap_tls_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/eap_tls_sec_prot/supp_eap_tls_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/auth_fwh_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/fwh_sec_prot/supp_fwh_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/auth_gkh_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/gkh_sec_prot/supp_gkh_sec_prot.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/key_sec_prot/key_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/avp_helper.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/radius_sec_prot/radius_client_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_certs.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_keys.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/sec_prot_lib.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot.d" "mbed/nanostack/sal-stack-nanostack/source/Security/protocols/tls_sec_prot/tls_sec_prot_lib.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/ccm_security.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/CCM_lib/mbedOS/aes_mbedtls_adapter.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Neighbor_cache/neighbor_cache.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/ns_sha256.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/SHA256_Lib/shalib.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/Trickle/trickle.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/blacklist/blacklist.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/etx/etx.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fhss/channel_list.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/fnv_hash/fnv_hash.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/hmac/hmac_md.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/ieee_802_11/ieee_802_11.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/load_balance/load_balance.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mac_neighbor_table/mac_neighbor_table.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/mdns/fnet_mdns.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/services/poll/fnet_poll.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/fnet/fnet_stack/stack/fnet_stdlib.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_events.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_fnet_port.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mdns/ns_mdns_api.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_buffer.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_frame_counter_table.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_interface.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/mle_service/mle_service_security.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nd_proxy/nd_proxy.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/nist_aes_kw/nist_aes_kw.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/pan_blacklist/pan_blacklist.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/random_early_detection/random_early_detection.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/isqrt.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_conf.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_crc.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/utils/ns_file_system.d" "mbed/nanostack/sal-stack-nanostack/source/Service_Libs/whiteboard/whiteboard.d" "mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/ipv6_routing_table.d" "mbed/nanostack/sal-stack-nanostack/source/ipv6_stack/protocol_ipv6.d" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/dhcp_service_api.d" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6.d" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_server.d" "mbed/nanostack/sal-stack-nanostack/source/libDHCPv6/libDHCPv6_vendordata.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/multicast_api.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_6lowpan_parameter_api.d"
-	-$(RM) "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_dns.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_ipv6.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_load_balance.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_mle.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_rpl.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_short_address_extension.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/net_test.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/ns_net.d" "mbed/nanostack/sal-stack-nanostack/source/libNET/src/socket_api.d" "mbed/nanostack/sal-stack-nanostack-eventloop/source/event.d" "mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timeout.d" "mbed/nanostack/sal-stack-nanostack-eventloop/source/ns_timer.d" "mbed/nanostack/sal-stack-nanostack-eventloop/source/system_timer.d" "mbed/ti-nv-driver/crc.d" "mbed/ti-nv-driver/nvocmp.d" "mbed/ti-rf-driver/source/RFQueue.d" "software_stack/ti15_4mac/macTask.d"
-	-$(RM) "software_stack/ti15_4mac/mac_settings/mac_cfg.d" "software_stack/ti15_4mac/mac_settings/mac_settings.d" "software_stack/ti15_4mac/osal_port/osal_port.d" "software_stack/ti15_4mac/osal_port/osal_port_timers.d" "software_stack/ti15_4mac/radio_configuration/mac_user_config.d" "software_stack/ti15_4mac/stack_user_api/api_mac/api_mac.d" "software_stack/ti15_4mac/stack_user_api/api_mac/timac_fhss_config.d" "wisun_ncp/platform/misc.d" "wisun_ncp/src/lib/spinel/spinel.d"
-	-$(RM) "wisun_ncp/src/core/api/instance_api.d" "wisun_ncp/src/core/api/logging_api.d" "wisun_ncp/src/core/api/message_api.d" "wisun_ncp/src/core/common/crc16.d" "wisun_ncp/src/core/common/instance.d" "wisun_ncp/src/core/common/logging.d" "wisun_ncp/src/core/common/message.d" "wisun_ncp/src/core/common/notifier.d" "wisun_ncp/src/core/common/string.d" "wisun_ncp/src/core/common/tasklet.d" "wisun_ncp/src/core/common/timer.d" "wisun_ncp/src/core/common/tlvs.d" "wisun_ncp/src/lib/hdlc/hdlc.d" "wisun_ncp/src/lib/spinel/spinel_buffer.d" "wisun_ncp/src/lib/spinel/spinel_decoder.d" "wisun_ncp/src/lib/spinel/spinel_encoder.d" "wisun_ncp/src/ncp/changed_props_set.d" "wisun_ncp/src/ncp/ncp_base.d" "wisun_ncp/src/ncp/ncp_base_dispatcher.d" "wisun_ncp/src/ncp/ncp_uart.d"
-	-$(RM) "wisun_iot_modem.out"
-	-$(RM) "wisun_iot_modem.hex"
-	-$(RM) "wisun_iot_modem-noheader.bin"
-	-$(RM) "wisun_iot_modem.bin"
-	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
-	-@echo 'Finished clean'
-	-@echo ' '
-
-post-build:
-	-$(CG_TOOL_ROOT)/bin/tiarmobjcopy wisun_iot_modem.out --output-target ihex wisun_iot_modem.hex
-	-$(CG_TOOL_ROOT)/bin/tiarmobjcopy wisun_iot_modem.out --output-target binary wisun_iot_modem-noheader.bin
-	-$(CG_DRIVER_LIB)/tools/common/mcuboot/imgtool sign --header-size 0x80 --align 4 --slot-size 0xA8000 --version 1.0.0 --pad-header --key ${CG_DRIVER_LIB}/source/third_party/mcuboot/root-ec-p256.pem wisun_iot_modem-noheader.bin wisun_iot_modem.bin
-	-@echo ' '
-
-.PHONY: all clean dependents
-.SECONDARY:
-
--include ../makefile.targets
-
+	@ echo Cleaning...
+	@ $(RM) $(OBJECTS) > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).out > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).map > $(DEVNULL) 2>&1
+# Possible intermediate files for hex generation
+	@ $(RM) $(NAME).a* > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).i* > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).m* > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).t* > $(DEVNULL) 2>&1
+	@ $(RM) $(NAME).x* > $(DEVNULL) 2>&1
+# End of intermediate files
+	@ $(RM) $(NAME).hex > $(DEVNULL) 2>&1
+	@ $(RM) $(SYSCFG_FILES)> $(DEVNULL) 2>&1
