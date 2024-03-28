@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "CC1352P7RGZ" --package "RGZ" --part "Default" --rtos "tirtos7" --product "simplelink_cc13xx_cc26xx_sdk@7.10.01.24"
- * @versions {"tool":"1.16.2+3028"}
+ * @cliArgs --device "CC1352P7RGZ" --package "RGZ" --part "Default" --rtos "tirtos7" --product "simplelink_cc13xx_cc26xx_sdk@7.40.00.77"
+ * @versions {"tool":"1.18.1+3343"}
  */
 
 /**
@@ -124,8 +124,7 @@ BIOS.rtsGateType    = "BIOS_GateMutexPri";
 BIOS.heapSize       = 0x00000000;
 BIOS.heapType       = "HeapCallback";
 
-Hwi.enableException = false;
-Hwi.nvicCCR         = [];
+Hwi.nvicCCR = [];
 
 HeapCallback.initFxn           = "osalHeapInitFxn";
 HeapCallback.allocInstFxn      = "osalHeapAllocFxn";
@@ -164,7 +163,6 @@ ti_wisunfan.genLibs                            = "macOnly";
 ti_wisunfan.region                             = "NA";
 ti_wisunfan.fhNetname                          = "Wi-SUN Network";
 ti_wisunfan.transmitPower                      = "20";
-ti_wisunfan.keyTableDefaultKey                 = "123456789ABCDEF00000000000000000";
 ti_wisunfan.radioConfig.$name                  = "ti_devices_radioconfig_settings_prop0";
 ti_wisunfan.radioConfig.codeExportConfig.$name = "ti_devices_radioconfig_code_export_param0";
 ti_wisunfan.aesccmModule.$name                 = "CONFIG_AESCCM_0";

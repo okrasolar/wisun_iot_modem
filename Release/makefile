@@ -7,7 +7,7 @@ LNK = "$(TI_TOOLS_ROOT)/bin/tiarmclang"
 HEX = "$(TI_TOOLS_ROOT)/bin/tiarmobjcopy"
 
 SYSCFG_CMD_STUB = $(TI_SYSCONFIG)/sysconfig_cli.sh --compiler ticlang --product $(SIMPLELINK_CC13XX_CC26XX_SDK_INSTALL_DIR)/.metadata/product.json
-SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../ti_wisunfan_coap_node.syscfg)
+SYSCFG_FILES := $(shell $(SYSCFG_CMD_STUB) --listGeneratedFiles --listReferencedFiles --output . ../wisun_eu.syscfg)
 
 SYSCFG_C_FILES = $(filter %.c,$(SYSCFG_FILES))
 SYSCFG_H_FILES = $(filter %.h,$(SYSCFG_FILES))
@@ -334,7 +334,7 @@ all: postbuild
 $(SYSCFG_FILES): syscfg
 	@ echo generation complete
 
-syscfg: ../ti_wisunfan_coap_node.syscfg
+syscfg: ../wisun_eu.syscfg
 	@ echo Generating configuration files...
 	@ $(SYSCFG_CMD_STUB) --output $(@D) $<
 
