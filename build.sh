@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export BINARY="wisun_iot_modem.bin"
+
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 <region>"
     exit 1
@@ -17,5 +19,11 @@ export TI_PROJECT_FOLDER_MODEM=$(pwd)
 export WISUN_REGION=$1
 
 cd Release/
+rm -f $BINARY
 make clean
 make
+
+echo "************************************************************"
+echo "Region: $1"
+echo "md5sum: `md5sum $BINARY`"
+echo "************************************************************"
