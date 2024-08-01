@@ -162,7 +162,6 @@ ti_wisunfan.lockProject                        = true;
 ti_wisunfan.rxOnIdle                           = true;
 ti_wisunfan.genLibs                            = "macOnly";
 ti_wisunfan.region                             = "EU";
-ti_wisunfan.panID                              = 0xABCD;
 ti_wisunfan.fhNetname                          = "Wi-SUN Network";
 ti_wisunfan.transmitPower                      = "14";
 ti_wisunfan.keyTableDefaultKey                 = "123456789ABCDEF00000000000000000";
