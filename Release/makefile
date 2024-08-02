@@ -19,7 +19,7 @@ NAME = wisun_iot_modem
 
 # Each config-specific .mak file will initialize appropriate options (AFLAGS, CFLAGS, LFLAGS),
 # which will then be appended to below.
-CONFIG := SECUREBOOT
+CONFIG := RELEASE
 ifeq ($(CONFIG), RELEASE)
 	include Release.mak
 else ifeq ($(CONFIG), SECUREBOOT)

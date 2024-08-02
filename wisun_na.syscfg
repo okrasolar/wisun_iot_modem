@@ -168,4 +168,3 @@ ti_wisunfan.radioConfig.codeExportConfig.$name = "ti_devices_radioconfig_code_ex
 ti_wisunfan.aesccmModule.$name                 = "CONFIG_AESCCM_0";
 ti_wisunfan.aesecbModule.$name                 = "CONFIG_AESECB_0";
 ti_wisunfan.aescbcModule.$name                 = "CONFIG_AESCBC_0";
-ti_wisunfan.ti_wisunfanOpts.$name              = "ti_ti_wisunfan_ti_wisunfan_config_opts0";
