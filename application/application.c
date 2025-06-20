@@ -349,6 +349,9 @@ void socket_callback(void* cb)
             } else {
                 ipConnectedFlg = false;
                 txPendingFlg = false;
+                // After a close, the stack sometimes deadlocks when proceeding immediately,
+                // thus adding an additional short delay.
+                usleep(1000);
                 cat_trigger_unsolicited_read(&at, &closed_cmd);
             }
             tr_info("socket_callback: SOCKET_DATA, sock=%d, bytes=%d", sock_cb->socket_id, sock_cb->d_len);
