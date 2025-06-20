@@ -348,6 +348,7 @@ void socket_callback(void* cb)
                 cat_trigger_unsolicited_read(&at, &ipd_cmd);
             } else {
                 ipConnectedFlg = false;
+                txPendingFlg = false;
                 cat_trigger_unsolicited_read(&at, &closed_cmd);
             }
             tr_info("socket_callback: SOCKET_DATA, sock=%d, bytes=%d", sock_cb->socket_id, sock_cb->d_len);
@@ -378,9 +379,12 @@ void socket_callback(void* cb)
             tr_info("socket_callback: SOCKET_CONNECT_CLOSED");
             break;
         case SOCKET_CONNECTION_RESET:
+            ipConnectedFlg = false;
+            txPendingFlg = false;
             tr_info("socket_callback: SOCKET_CONNECTION_RESET");
             break;
         case SOCKET_NO_ROUTE:
+            tcpConnectProblem = true;
             tr_info("socket_callback: SOCKET_NO_ROUTE");
             break;
         case SOCKET_TX_DONE:
@@ -656,13 +660,19 @@ static cat_return_state cipsend_write(const struct cat_command* cmd, const uint8
         while (txPendingFlg) {
             usleep(1000);
         }
-        txPendingFlg = true;
-        ret = socket_send(socket_id, net_buffer, min_size);
+        if (ipConnectedFlg) {
+            txPendingFlg = true;
+            ret = socket_send(socket_id, net_buffer, min_size);
+        } else {
+            tr_error("Disconnect during CIPSEND");
+            return CAT_RETURN_STATE_ERROR;
+        }
     } else {
         ret = socket_sendto(socket_id, &peer_addr, net_buffer, min_size);
     }
     if (ret < 0) {
         tr_error("socket_sendto() returned %d", ret);
+        txPendingFlg = false;
         return CAT_RETURN_STATE_ERROR;
     }
     bytesToSend -= min_size;
