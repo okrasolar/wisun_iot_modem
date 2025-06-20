@@ -341,10 +341,10 @@ void socket_callback(void* cb)
 
     switch (sock_cb->event_type & SOCKET_EVENT_MASK) {
         case SOCKET_DATA:
-            pthread_mutex_lock(&cat_mutex);
-            ipd_data_length += sock_cb->d_len;
-            pthread_mutex_unlock(&cat_mutex);
-            if (sock_cb->d_len > 0) {
+            if (sock_cb->d_len > 0 && sock_cb->d_len <= NET_BUF_SIZE) {
+                pthread_mutex_lock(&cat_mutex);
+                ipd_data_length += sock_cb->d_len;
+                pthread_mutex_unlock(&cat_mutex);
                 cat_trigger_unsolicited_read(&at, &ipd_cmd);
             } else {
                 ipConnectedFlg = false;
