@@ -119,6 +119,10 @@ static volatile uint8_t newConnectedFlg = 2;
 static volatile bool ipConnectedFlg = false;
 static volatile bool tcpConnectProblem = false;
 static volatile bool txPendingFlg = false;
+static volatile uint16_t ipd_data_length_callback = 0;
+static volatile bool disconnectTriggered = false;
+static volatile bool sendFailTriggered = false;
+
 static char uartChar;
 static uint16_t ipd_data_length = 0;
 static int8_t interface_id = NOT_INITIALIZED;
@@ -179,7 +183,7 @@ configurable_props_t cfg_props = { .phyTxPower = CONFIG_TRANSMIT_POWER,
     .operating_mode = CONFIG_OP_MODE_ID,
     .hwaddr = CONFIG_INVALID_HWADDR };
 
-static pthread_mutex_t cat_mutex;
+static pthread_mutex_t ipd_mutex;
 static sem_t sem;
 
 #ifdef COAP_SERVICE_ENABLE
@@ -336,71 +340,67 @@ void socket_callback(void* cb)
 {
     socket_callback_t* sock_cb = (socket_callback_t*)cb;
 
-    tr_debug("socket_callback() sock=%d, event=0x%x, interface=%d, data len=%d",
-        sock_cb->socket_id, sock_cb->event_type, sock_cb->interface_id, sock_cb->d_len);
+    //tr_debug("socket_callback() sock=%d, event=0x%x, interface=%d, data len=%d",
+    //    sock_cb->socket_id, sock_cb->event_type, sock_cb->interface_id, sock_cb->d_len);
 
     switch (sock_cb->event_type & SOCKET_EVENT_MASK) {
         case SOCKET_DATA:
             if (sock_cb->d_len > 0 && sock_cb->d_len <= NET_BUF_SIZE) {
-                pthread_mutex_lock(&cat_mutex);
-                ipd_data_length += sock_cb->d_len;
-                pthread_mutex_unlock(&cat_mutex);
-                cat_trigger_unsolicited_read(&at, &ipd_cmd);
+                pthread_mutex_lock(&ipd_mutex);
+                ipd_data_length_callback = sock_cb->d_len;
+                pthread_mutex_unlock(&ipd_mutex);
             } else {
                 ipConnectedFlg = false;
                 txPendingFlg = false;
-                // After a close, the stack sometimes deadlocks when proceeding immediately,
-                // thus adding an additional short delay.
-                usleep(1000);
-                cat_trigger_unsolicited_read(&at, &closed_cmd);
+                disconnectTriggered = true;
             }
-            tr_info("socket_callback: SOCKET_DATA, sock=%d, bytes=%d", sock_cb->socket_id, sock_cb->d_len);
+            //tr_info("socket_callback: SOCKET_DATA, sock=%d, bytes=%d", sock_cb->socket_id, sock_cb->d_len);
             break;
         case SOCKET_CONNECT_DONE:
             ipConnectedFlg = true;
             txPendingFlg = false;
-            tr_info("socket_callback: SOCKET_CONNECT_DONE");
+            //tr_info("socket_callback: SOCKET_CONNECT_DONE");
             break;
         case SOCKET_CONNECT_FAIL:
-            tr_info("socket_callback: SOCKET_CONNECT_FAIL");
+            //tr_info("socket_callback: SOCKET_CONNECT_FAIL");
             tcpConnectProblem = true;
             break;
         case SOCKET_CONNECT_AUTH_FAIL:
-            tr_info("socket_callback: SOCKET_CONNECT_AUTH_FAIL");
+            //tr_info("socket_callback: SOCKET_CONNECT_AUTH_FAIL");
             break;
         case SOCKET_INCOMING_CONNECTION:
-            tr_info("socket_callback: SOCKET_INCOMING_CONNECTION");
+            //tr_info("socket_callback: SOCKET_INCOMING_CONNECTION");
             break;
         case SOCKET_TX_FAIL:
             txPendingFlg = false;
-            cat_trigger_unsolicited_read(&at, &sendfail_cmd);
-            tr_info("socket_callback: SOCKET_TX_FAIL");
+            sendFailTriggered = true;
+            //tr_info("socket_callback: SOCKET_TX_FAIL");
             break;
         case SOCKET_CONNECT_CLOSED:
             ipConnectedFlg = false;
             txPendingFlg = false;
-            tr_info("socket_callback: SOCKET_CONNECT_CLOSED");
+            //tr_info("socket_callback: SOCKET_CONNECT_CLOSED");
             break;
         case SOCKET_CONNECTION_RESET:
             ipConnectedFlg = false;
             txPendingFlg = false;
-            tr_info("socket_callback: SOCKET_CONNECTION_RESET");
+            //tr_info("socket_callback: SOCKET_CONNECTION_RESET");
             break;
         case SOCKET_NO_ROUTE:
             tcpConnectProblem = true;
-            tr_info("socket_callback: SOCKET_NO_ROUTE");
+            //tr_info("socket_callback: SOCKET_NO_ROUTE");
             break;
         case SOCKET_TX_DONE:
             txPendingFlg = false;
-            tr_info("socket_callback: SOCKET_TX_DONE");
+            //tr_info("socket_callback: SOCKET_TX_DONE");
             break;
         case SOCKET_NO_RAM:
-            tr_info("socket_callback: SOCKET_NO_RAM");
+            //tr_info("socket_callback: SOCKET_NO_RAM");
             break;
         case SOCKET_CONNECTION_PROBLEM:
             tcpConnectProblem = true;
             ipConnectedFlg = false;
-            tr_info("socket_callback: SOCKET_CONNECTION_PROBLEM");
+            //tr_info("socket_callback: SOCKET_CONNECTION_PROBLEM");
             break;
         default:
             break;
@@ -414,20 +414,6 @@ void socket_callback(void* cb)
  AT command parser functions
  *****************************************************************************/
 
-static int lock_mutex()
-{
-    return pthread_mutex_lock(&cat_mutex);
-}
-
-static int unlock_mutex()
-{
-    return pthread_mutex_unlock(&cat_mutex);
-}
-
-static struct cat_mutex_interface cmutex = {
-    .lock = lock_mutex,
-    .unlock = unlock_mutex
-};
 
 static int write_char(char ch)
 {
@@ -696,17 +682,16 @@ static cat_return_state ciprecvdata_write(const struct cat_command* cmd, const u
     }
 
     if (recv_data_length == 0) {
-        tr_error("No data in receive buffer when calling CIPRECVDATA");
         return CAT_RETURN_STATE_ERROR;
     }
 
-    uint16_t min_size = recv_data_length > NET_BUF_SIZE ? NET_BUF_SIZE : recv_data_length;
+    uint16_t max_size = recv_data_length > NET_BUF_SIZE ? NET_BUF_SIZE : recv_data_length;
 
     int16_t bytes_recv;
     if (_isTcp) {
-        bytes_recv = socket_recv(socket_id, net_buffer, min_size, 0);
+        bytes_recv = socket_recv(socket_id, net_buffer, max_size, 0);
     } else {
-        bytes_recv = socket_read(socket_id, &peer_addr, net_buffer, min_size);
+        bytes_recv = socket_read(socket_id, &peer_addr, net_buffer, max_size);
     }
 
     if (bytes_recv > 0) {
@@ -1015,7 +1000,7 @@ void* mainThread(void* arg0)
 {
     int16_t ret;
 
-    pthread_mutex_init(&cat_mutex, NULL);
+    pthread_mutex_init(&ipd_mutex, NULL);
     sem_init(&sem, 0, 0);
 
     /* Configure the LED pins */
@@ -1029,7 +1014,7 @@ void* mainThread(void* arg0)
     uartSetup();
 
     /* Initialize AT parser library */
-    cat_init(&at, &desc, &iface, &cmutex);
+    cat_init(&at, &desc, &iface, NULL);
 
     write_string("CC1352P7 Wi-SUN AT command modem firmware\r\n");
 
@@ -1085,6 +1070,25 @@ void* mainThread(void* arg0)
                 coap_oad_cb);
 #endif
             write_string("ready\r\n\r\n");
+        }
+
+        // Process notifications from callback
+        if (ipd_data_length == 0) {
+            pthread_mutex_lock(&ipd_mutex);
+            ipd_data_length = ipd_data_length_callback;
+            ipd_data_length_callback = 0;
+            pthread_mutex_unlock(&ipd_mutex);
+            if (ipd_data_length > 0) {
+                cat_trigger_unsolicited_read(&at, &ipd_cmd);
+            }
+        }
+        if (disconnectTriggered) {
+            disconnectTriggered = false;
+            cat_trigger_unsolicited_read(&at, &closed_cmd);
+        }
+        if (sendFailTriggered) {
+            sendFailTriggered = false;
+            cat_trigger_unsolicited_read(&at, &sendfail_cmd);
         }
 
         // Perform AT command parsing
