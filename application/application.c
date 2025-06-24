@@ -340,8 +340,8 @@ void socket_callback(void* cb)
 {
     socket_callback_t* sock_cb = (socket_callback_t*)cb;
 
-    //tr_debug("socket_callback() sock=%d, event=0x%x, interface=%d, data len=%d",
-    //    sock_cb->socket_id, sock_cb->event_type, sock_cb->interface_id, sock_cb->d_len);
+    // tr_debug("socket_callback() sock=%d, event=0x%x, interface=%d, data len=%d",
+    //     sock_cb->socket_id, sock_cb->event_type, sock_cb->interface_id, sock_cb->d_len);
 
     switch (sock_cb->event_type & SOCKET_EVENT_MASK) {
         case SOCKET_DATA:
@@ -354,53 +354,53 @@ void socket_callback(void* cb)
                 txPendingFlg = false;
                 disconnectTriggered = true;
             }
-            //tr_info("socket_callback: SOCKET_DATA, sock=%d, bytes=%d", sock_cb->socket_id, sock_cb->d_len);
+            // tr_info("socket_callback: SOCKET_DATA, sock=%d, bytes=%d", sock_cb->socket_id, sock_cb->d_len);
             break;
         case SOCKET_CONNECT_DONE:
             ipConnectedFlg = true;
             txPendingFlg = false;
-            //tr_info("socket_callback: SOCKET_CONNECT_DONE");
+            // tr_info("socket_callback: SOCKET_CONNECT_DONE");
             break;
         case SOCKET_CONNECT_FAIL:
-            //tr_info("socket_callback: SOCKET_CONNECT_FAIL");
+            // tr_info("socket_callback: SOCKET_CONNECT_FAIL");
             tcpConnectProblem = true;
             break;
         case SOCKET_CONNECT_AUTH_FAIL:
-            //tr_info("socket_callback: SOCKET_CONNECT_AUTH_FAIL");
+            // tr_info("socket_callback: SOCKET_CONNECT_AUTH_FAIL");
             break;
         case SOCKET_INCOMING_CONNECTION:
-            //tr_info("socket_callback: SOCKET_INCOMING_CONNECTION");
+            // tr_info("socket_callback: SOCKET_INCOMING_CONNECTION");
             break;
         case SOCKET_TX_FAIL:
             txPendingFlg = false;
             sendFailTriggered = true;
-            //tr_info("socket_callback: SOCKET_TX_FAIL");
+            // tr_info("socket_callback: SOCKET_TX_FAIL");
             break;
         case SOCKET_CONNECT_CLOSED:
             ipConnectedFlg = false;
             txPendingFlg = false;
-            //tr_info("socket_callback: SOCKET_CONNECT_CLOSED");
+            // tr_info("socket_callback: SOCKET_CONNECT_CLOSED");
             break;
         case SOCKET_CONNECTION_RESET:
             ipConnectedFlg = false;
             txPendingFlg = false;
-            //tr_info("socket_callback: SOCKET_CONNECTION_RESET");
+            // tr_info("socket_callback: SOCKET_CONNECTION_RESET");
             break;
         case SOCKET_NO_ROUTE:
             tcpConnectProblem = true;
-            //tr_info("socket_callback: SOCKET_NO_ROUTE");
+            // tr_info("socket_callback: SOCKET_NO_ROUTE");
             break;
         case SOCKET_TX_DONE:
             txPendingFlg = false;
-            //tr_info("socket_callback: SOCKET_TX_DONE");
+            // tr_info("socket_callback: SOCKET_TX_DONE");
             break;
         case SOCKET_NO_RAM:
-            //tr_info("socket_callback: SOCKET_NO_RAM");
+            // tr_info("socket_callback: SOCKET_NO_RAM");
             break;
         case SOCKET_CONNECTION_PROBLEM:
             tcpConnectProblem = true;
             ipConnectedFlg = false;
-            //tr_info("socket_callback: SOCKET_CONNECTION_PROBLEM");
+            // tr_info("socket_callback: SOCKET_CONNECTION_PROBLEM");
             break;
         default:
             break;
@@ -413,7 +413,6 @@ void socket_callback(void* cb)
 /******************************************************************************
  AT command parser functions
  *****************************************************************************/
-
 
 static int write_char(char ch)
 {
